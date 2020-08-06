@@ -13,7 +13,6 @@ import Register from '../components/Register'
 export default class Homepage extends Component {
     render() {
         return (
-            
             <div className="homepage">
                 <div className="left">
                     <div className="listCon">

@@ -9,8 +9,8 @@ export default class Welcome extends Component {
                 <div className="logoCon">
                     <img src={logo} alt="logo"/>
                 </div>
-                <h1>See what health professionals<br /> are talking about</h1>
-                <h4>Join Casibus today.</h4>
+                <h1>See what health professionals are talking about</h1>
+                <h5>Join Casibus today.</h5>
                 <button className="btnFill">Sign up</button>
                 <Link to="/login"><button className="btnBorder">Sign in</button></Link>
             </div>
