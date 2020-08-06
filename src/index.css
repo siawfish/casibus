@@ -1,16 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body {
   margin: 0;
+  height: 100%;
+  font-family: 'Work Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.logoCon img {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+}
+
+.btnFill {
+  background-color: #8ec63f;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 25px;
+  font-weight: 600;
+  border: none;
+  font-size: 17px;
+  outline: none;
+  cursor: pointer;
+}
+
+.btnFill:hover {
+  background-color: #689626;
+}
+
+.listCon .btnBorder {
+  background-color: #ffffff;
+  color: #8ec63f;
+  padding: 10px;
+  border-radius: 25px;
+  font-weight: 600;
+  border: 1px solid #8ec63f;
+  font-size: 17px;
+  margin-top: 20px;
+  outline: none;
+  cursor: pointer;
+}
+
+.btnBorder:hover {
+  background-color: #ecfad9;
 }
 
 .homepage {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  flex-grow: 1;
+  justify-content: space-evenly;
+  align-content: center;
+  flex-wrap: nowrap;
+  height: 100vh;
 }
 
 .homepage .left {
   background-color: #8ec63f;
+  display: flex;
+  flex-grow: 1;
+  height: 100vh;
+  align-items: center;
+  background-image: url(../src/assets/homeBg.png);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.homepage .right {
+  display: flex;
+  flex-grow: 1;
+  height: 100vh;
+  align-items: center;
+}
+
+.homepage .listCon {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 100px;
+}
+
+.listCon span {
+  padding-top: 30px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.right .listCon span {
+  color: #333333;
 }
