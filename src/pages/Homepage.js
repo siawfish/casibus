@@ -7,6 +7,7 @@ import {
 } from "react-router-dom"
 import Welcome from '../components/Welcome'
 import Login from '../components/Login'
+import Register from '../components/Register'
 
 
 export default class Homepage extends Component {
@@ -27,6 +28,7 @@ export default class Homepage extends Component {
                         <Route exact path="/" component={Welcome} />
                     </Router>
                 </div>
+                <Register />
             </div>
         )
     }

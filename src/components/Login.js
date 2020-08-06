@@ -9,7 +9,7 @@ export default class Login extends Component {
                 <div className="logoCon">
                     <img src={logo} alt="logo"/>
                 </div>
-                <h1>Log in to Casibus</h1>
+                <h2>Log in to Casibus</h2>
                 <form className="loginForm">
                     <div className="inputCon">
                         <label>Email</label>
@@ -23,7 +23,7 @@ export default class Login extends Component {
                 </form>
                 <div className="links">
                     <Link to="#">Forgot password?</Link>
-                    <Link to="/signup">Sign up for Casibus</Link>
+                    <Link>Sign up for Casibus</Link>
                 </div>
             </div>
         )
