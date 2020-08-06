@@ -43,6 +43,11 @@ body {
   cursor: pointer;
 }
 
+.btnBorder a {
+  text-decoration: none;
+  color: #8ec63f;
+}
+
 .btnBorder:hover {
   background-color: #ecfad9;
 }
