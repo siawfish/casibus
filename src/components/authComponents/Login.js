@@ -1,8 +1,27 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../assets/images/logo.png'
+import logo from '../../assets/images/logo.png'
+import Register from './Register'
 
 export default class Login extends Component {
+    constructor(){
+        super()
+        this.state = {
+            show:false
+        }
+    }
+
+    register = () => {
+        this.setState({
+            show:true
+        })
+    }
+
+    handleClose = () => {
+        this.setState({
+            show:false
+        })
+    }
     render() {
         return (
             <div className="login">
@@ -23,8 +42,9 @@ export default class Login extends Component {
                 </form>
                 <div className="links">
                     <Link to="#">Forgot password?</Link>
-                    <Link>Sign up for Casibus</Link>
+                    <Link onClick={this.register}>Sign up for Casibus</Link>
                 </div>
+                <Register show={this.state.show} handleClose={this.handleClose} />
             </div>
         )
     }

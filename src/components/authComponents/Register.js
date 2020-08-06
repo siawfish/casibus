@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import logo from '../assets/images/logo.png'
+import logo from '../../assets/images/logo.png'
 import moment from 'moment'
-import months from '../assets/resource/dates'
-import jobs from '../assets/resource/jobs'
+import months from '../../assets/resource/dates'
+import jobs from '../../assets/resource/jobs'
 
 export default class Register extends Component {
     constructor(){
@@ -35,15 +35,9 @@ export default class Register extends Component {
         return years
     }
 
-    handleClose = () => {
-        this.setState({
-            show:false
-        })
-    }
-
     render() {
         return (
-            <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal show={this.props.show} onHide={this.props.handleClose}>
                 <Modal.Body>
                     <div className="logoCon modalLogo">
                         <img src={logo} alt="logo"/>
