@@ -12,7 +12,7 @@ export default class Welcome extends Component {
                 <h1>See what health professionals<br /> are talking about</h1>
                 <h4>Join Casibus today.</h4>
                 <button className="btnFill">Sign up</button>
-                <button className="btnBorder"><Link to="/login">Sign in</Link></button>
+                <Link to="/login"><button className="btnBorder">Sign in</button></Link>
             </div>
         )
     }

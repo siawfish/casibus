@@ -30,7 +30,7 @@ body {
   background-color: #689626;
 }
 
-.listCon .btnBorder {
+.btnBorder {
   background-color: #ffffff;
   color: #8ec63f;
   padding: 10px;
@@ -38,14 +38,16 @@ body {
   font-weight: 600;
   border: 1px solid #8ec63f;
   font-size: 17px;
-  margin-top: 20px;
   outline: none;
   cursor: pointer;
 }
 
-.btnBorder a {
-  text-decoration: none;
-  color: #8ec63f;
+.listCon .btnBorder {
+  margin-top: 20px;
+}
+
+a .btnBorder {
+  width: 100%;
 }
 
 .btnBorder:hover {
@@ -83,7 +85,7 @@ body {
 .homepage .listCon {
   display: flex;
   flex-direction: column;
-  padding: 0px 100px;
+  padding-left: 100px;
 }
 
 .listCon span {
@@ -95,4 +97,60 @@ body {
 
 .right .listCon span {
   color: #333333;
+}
+
+.login {
+  padding-left: 100px;
+  text-align: center;
+}
+
+.loginForm {
+  width: 400px;
+  text-align: left;
+}
+
+.loginForm input {
+  min-height: 30px;
+  border: none;
+  background-color: transparent;
+  border-bottom: 1px solid #8ec63f;
+  outline: none;
+}
+
+.loginForm input:hover {
+  border-bottom: 2px solid #689626;
+}
+
+.loginForm .inputCon {
+  display: flex;
+  flex-direction: column;
+  background-color: #ecfad9;
+  border-radius: 4px;
+  margin: 15px 0;
+  padding: 8px;
+}
+
+.loginForm .btnBorder {
+  width: 100%;
+}
+
+.loginForm label {
+  font-size: small;
+}
+
+.login .links {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.login .links a {
+  color: #689626;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.login .links a:hover {
+  color: #8ec63f;
 }
