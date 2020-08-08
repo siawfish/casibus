@@ -3,7 +3,7 @@ import caseImg from '../../assets/images/caseImg.jpg'
 import { FaRegAddressCard, FaPhotoVideo, FaSignature } from 'react-icons/fa'
 import { GoComment } from 'react-icons/go'
 import { RiShareForwardBoxLine } from 'react-icons/ri'
-import avi from '../assets/images/avi.jpg'
+import avi from '../../assets/images/avi.jpg'
 
 export default class Midpane extends Component {
     render() {

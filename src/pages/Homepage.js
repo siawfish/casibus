@@ -4,6 +4,7 @@ import { FiChevronDown } from 'react-icons/fi'
 import avi from '../assets/images/avi.jpg'
 
 import Sidepane from '../components/hpComponents/Sidepane'
+import Midpane from '../components/hpComponents/Midpane'
 
 
 export default class Home extends Component {
@@ -12,7 +13,7 @@ export default class Home extends Component {
             <div className="home">
                 <Sidepane />
                 
-                
+                <Midpane />
                 <div className="right">
 
                     <div className="searchCon">
