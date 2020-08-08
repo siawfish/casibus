@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { FaRegAddressCard, FaPhotoVideo } from 'react-icons/fa'
 import avi from '../../assets/images/avi.jpg'
 
+
 export default class HomeShareCase extends Component {
     render() {
         return (
