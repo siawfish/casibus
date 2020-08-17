@@ -580,6 +580,10 @@ label {
   margin-left: 10px;
 }
 
+.profile {
+  background-color: #ffffff;
+}
+
 .profile .proBanner {
   height: 200px;
   background-image: url(../src/assets/images/proBg.png);
@@ -589,15 +593,62 @@ label {
 }
 
 .profile .propicCon {
-  padding-top: 100px;
+  padding-top: 80px;
 }
 
 .profile .propicCon img{
-  width: 200px;
-  height: 200px;
-  border-radius: 100px;
+  width: 180px;
+  height: 180px;
+  border-radius: 90px;
   border: 3px solid #cef09e;
+
 }
 
+.profile .bioArea {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: -50px;
+  position: relative;
+  padding-top: 10px;
+}
 
+.bioArea .btnBorder {
+  padding: 5px 10px;
+  margin-right: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.profile .bioCon {
+  margin-top: 50px;
+}
+
+.bioCon .desc, .bioCon small {
+  color: #777777;
+}
+
+.bioCon .desc {
+  margin-bottom: 10px;
+  padding: 0 30px;
+}
+
+.bioCon p small {
+  padding: 0 10px;
+}
+
+.followersCount a {
+  padding: 0 20px;
+  color: #777777;
+}
+
+.followersCount a:hover {
+  color: #000;
+}
+
+.followersCount span {
+  color: #000000;
+  font-weight: 600;
+}
 
