@@ -4,6 +4,7 @@ import { MdAddLocation } from 'react-icons/md'
 import { FaHospitalSymbol, FaBirthdayCake } from 'react-icons/fa'
 import { BsFillCalendarFill } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
+import Case from './Case'
 
 export default class Profile extends Component {
     render() {
@@ -23,6 +24,15 @@ export default class Profile extends Component {
                                 <Link><span>3,000</span> Followers</Link><Link><span>1,000</span> Following</Link>
                             </div>
                         </div>
+                    </div>
+                    <div className="tabs">
+                        <span className="active">Cases</span>
+                        <span>Cosigns</span>
+                        <span>Bookmarks</span>
+                    </div>
+                    <div className="tabsContent">
+                        <Case />
+                        <Case />
                     </div>
                 </div>
             </div>

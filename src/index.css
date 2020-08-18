@@ -297,6 +297,7 @@ label {
 .home .mid .header {
   position: sticky;
   top: 0;
+  z-index: 1;
 }
 
 .home .header h4 {
@@ -374,6 +375,7 @@ label {
   border-bottom: 1px solid #ecfad9;
   border-top: 1px solid #ecfad9;
   cursor: pointer;
+  text-align: left;
 }
 
 .casesCon:hover {
@@ -623,6 +625,7 @@ label {
 
 .profile .bioCon {
   margin-top: 50px;
+  
 }
 
 .bioCon .desc, .bioCon small {
@@ -650,5 +653,32 @@ label {
 .followersCount span {
   color: #000000;
   font-weight: 600;
+}
+
+.profile .tabs {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #eeeeee;
+  background-color: #ffffff;
+}
+
+.tabs .active {
+  color: #689626;
+  border-bottom: 2px solid #689626;
+}
+
+.tabs span {
+  padding: 10px 40px;
+  font-weight: 600;
+  color: #777777;
+  cursor: pointer;
+  flex-grow: 1;
+}
+
+.tabs span:hover {
+  background-color: #f0fcde;
+  color: #689626;
 }
 
