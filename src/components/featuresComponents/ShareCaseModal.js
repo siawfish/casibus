@@ -4,6 +4,7 @@ import { Modal } from 'react-bootstrap'
 import { IoMdClose } from 'react-icons/io'
 import avatar from '../../assets/images/avi.jpg'
 import { FaRegAddressCard, FaPhotoVideo } from 'react-icons/fa'
+import CaseFeedBack from './CaseFeedBack'
 
 
 export default class ShareCaseModal extends Component {
@@ -57,7 +58,7 @@ export default class ShareCaseModal extends Component {
                         </div>
                     </Modal.Body>
                 </Modal>
-                <div id="snackbar">Some text some message..</div>
+                <CaseFeedBack />
             </>
         )
     }
