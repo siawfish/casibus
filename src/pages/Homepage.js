@@ -10,7 +10,7 @@ export default class Home extends Component {
             <div className="home">
                 <Sidepane />
                 
-                <Midpane />
+                <Midpane loc={this.props.location} />
                 
                 <Outterpane />
             </div>

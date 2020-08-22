@@ -6,10 +6,11 @@ import Profile from '../../pages/Profile'
 
 export default class Midpane extends Component {
     render() {
+        
         return (
             <div className="mid">
 
-                <Header />
+                <Header loc={ this.props.loc } />
 
                 <BrowserRouter>
                     <Route path="/home" component={ Interests } />

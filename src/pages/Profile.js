@@ -6,21 +6,23 @@ import Bio from '../components/featuresComponents/Bio'
 export default class Profile extends Component {
     render() {
         return (
-            <div className="profile">
-                <div className="proBanner">
-                    <Propic />
-                    <Bio />
-                    <div className="tabs">
-                        <span className="active">Cases</span>
-                        <span>Cosigns</span>
-                        <span>Bookmarks</span>
-                    </div>
-                    <div className="tabsContent">
-                        <Case />
-                        <Case />
+           <>
+                <div className="profile">
+                    <div className="proBanner">
+                        <Propic />
+                        <Bio />
+                        <div className="tabs">
+                            <span className="active">Cases</span>
+                            <span>Cosigns</span>
+                            <span>Bookmarks</span>
+                        </div>
+                        <div className="tabsContent">
+                            <Case />
+                            <Case />
+                        </div>
                     </div>
                 </div>
-            </div>
+           </>
         )
     }
 }

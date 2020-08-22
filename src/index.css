@@ -294,6 +294,32 @@ label {
   background-color: #ffffff;
 }
 
+.profileHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.profileHeader svg {
+  color: #689626;
+  font-size: x-large;
+}
+
+.backIcon {
+  padding: 10px;
+  border-radius: 50%;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.backIcon:hover {
+  background-color: #f0fcde;
+}
+
+.profileHeader h6 {
+  margin-bottom: 0;
+}
+
 .home .mid .header {
   position: sticky;
   top: 0;
