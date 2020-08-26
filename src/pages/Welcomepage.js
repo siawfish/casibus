@@ -36,9 +36,9 @@ class Welcomepage extends Component {
 }
 
 const mapStateToProps = (state) => {
-    
+    console.log(state);
     return {
-        auth:state.auth.status
+        auth:state.firebase.auth.uid
     }
 }
 

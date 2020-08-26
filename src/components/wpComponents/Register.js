@@ -136,7 +136,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => {
     return {
-        err:state.auth.err,
+        err:state.auth.signupErr,
     }
 }
 

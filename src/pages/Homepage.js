@@ -13,20 +13,19 @@ class Home extends Component {
         }
         return (
             <div className="home">
-                <Sidepane />
+                <Sidepane uid={this.props.auth} />
                 
-                <Midpane loc={this.props.location} />
+                <Midpane uid={this.props.auth} loc={this.props.location} />
                 
-                <Outterpane />
+                <Outterpane loc={this.props.location} />
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
-        auth:state.auth.status
+        auth:state.firebase.auth.uid
     }
 }
 

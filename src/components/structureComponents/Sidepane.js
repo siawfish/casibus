@@ -18,13 +18,11 @@ export default class Sidepane extends Component {
                         <li><Link to="#"><span><FaSlackHash /></span>Cases</Link></li>
                         <li><Link to="#"><span><FaBell /></span>Notifications</Link></li>
                         <li><Link to="#"><span><FaPager /></span>Pagers</Link></li>
-                        <li><Link to="/profile"><span><FaUser /></span>Profile</Link></li>
+                        <li><Link to={'/profile/'+this.props.uid}><span><FaUser /></span>Profile</Link></li>
                     </ul>
                     <ShareCaseModal />
                 </div>
-
                 <Logout />
-                
             </div>
         )
     }

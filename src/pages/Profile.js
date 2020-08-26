@@ -5,6 +5,7 @@ import Bio from '../components/featuresComponents/Bio'
 
 export default class Profile extends Component {
     render() {
+        let id = this.props.match.params.uid
         return (
            <>
                 <div className="profile">

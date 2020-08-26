@@ -18,14 +18,14 @@ export const register = (user) => {
                 })
                 .catch((err)=>{
                     dispatch({
-                        type: 'AuthErr',
+                        type: 'AuthErr_SU',
                         err:err.message
                     })
                 })
             })
             .catch((err)=>{
                 dispatch({
-                    type:"AuthErr",
+                    type:"AuthErr_SU",
                     err:err.message
                 })
             })
@@ -63,7 +63,7 @@ export const signIn = (cred) => {
         })
         .catch((err)=>{
             dispatch({
-                type:"AuthErr",
+                type:"AuthErr_SI",
                 err: err.message
             })
         })
