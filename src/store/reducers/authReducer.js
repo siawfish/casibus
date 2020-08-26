@@ -1,5 +1,4 @@
 let iniState = {
-    status:false,
     signupErr:'',
     signinErr:''
 }
@@ -7,9 +6,7 @@ let iniState = {
 export default function authReducer(state = iniState, action){
     switch(action.type){
         case 'AuthSuccess':
-            return{
-                status:true,
-            }
+            return state
         case 'AuthErr_SU':
             return {
                 signupErr:action.err
@@ -19,12 +16,8 @@ export default function authReducer(state = iniState, action){
                 signinErr:action.err
             }
         case 'SignedOut':
-            return {
-                status:false,
-                err:''
-            }
+            return state
         default:
             return state
-            
     }
 }

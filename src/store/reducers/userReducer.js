@@ -3,5 +3,15 @@ let iniState = {
 }
 
 export default function userReducer(state = iniState, action){
-    return state
+    switch(action.type){
+        case "User":
+            return {
+                user:action.user
+            }
+        case "UserErr":
+            console.log(action.err);
+            return state
+        default:
+            return state
+    }
 }

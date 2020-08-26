@@ -2,16 +2,21 @@ import React, { Component } from 'react'
 import Case from '../components/featuresComponents/Case'
 import Propic from '../components/featuresComponents/Propic'
 import Bio from '../components/featuresComponents/Bio'
+import { connect } from 'react-redux'
+import { getUser } from '../store/actions/userActions'
 
-export default class Profile extends Component {
+class Profile extends Component {
+    componentDidMount(){
+        const id = this.props.match.params.uid
+        this.props.getUser(id)
+    }
     render() {
-        let id = this.props.match.params.uid
         return (
            <>
                 <div className="profile">
                     <div className="proBanner">
                         <Propic />
-                        <Bio />
+                        <Bio user={this.props.user} />
                         <div className="tabs">
                             <span className="active">Cases</span>
                             <span>Cosigns</span>
@@ -27,3 +32,16 @@ export default class Profile extends Component {
         )
     }
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+        user:state.user.user
+    }
+}
+
+const mapDispatchToProps = {
+    getUser
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)

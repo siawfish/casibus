@@ -6,7 +6,7 @@ export default class Interests extends Component {
     render() {
         return (
             <>
-                <HomeShareCase />
+                <HomeShareCase uid={this.props.uid} />
                 <Case />
             </>
         )

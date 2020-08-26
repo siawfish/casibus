@@ -10,7 +10,7 @@ export const register = (user) => {
                 firestore
                 .collection('users')
                 .doc(res.user.uid)
-                .set(user)
+                .set({...user, createdAt:new Date()})
                 .then(()=>{
                     dispatch({
                         type:'AuthSuccess',

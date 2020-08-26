@@ -13,8 +13,10 @@ export default class Midpane extends Component {
                 <Header loc={ this.props.loc } />
 
                 <BrowserRouter>
-                    <Route path="/home" component={ Interests } />
-                    <Route path="/profile/:uid" component={ Profile } />
+                    <Route path="/home">
+                        <Interests uid={this.props.uid} />
+                    </Route>
+                    <Route path="/profile/:uid" component={Profile} />
                 </BrowserRouter>
 
             </div>
