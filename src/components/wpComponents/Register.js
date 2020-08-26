@@ -4,8 +4,10 @@ import logo from '../../assets/images/logo.png'
 import moment from 'moment'
 import months from '../../assets/resource/dates'
 import jobs from '../../assets/resource/jobs'
+import { connect } from 'react-redux'
+import { register } from '../../store/actions/authActions'
 
-export default class Register extends Component {
+class Register extends Component {
     constructor(){
         super()
         this.state = {
@@ -50,7 +52,14 @@ export default class Register extends Component {
 
     onSubmit = (e) => {
         e.preventDefault()
-        console.log(this.state);
+        let user = {
+            name:this.state.name,
+            email:this.state.email,
+            pass:this.state.pass,
+            title:this.state.title,
+            dob:this.state.day+" "+this.state.month+", "+this.state.year
+        }
+        this.props.register(user)
     }
 
     render() {
@@ -62,6 +71,7 @@ export default class Register extends Component {
                     </div>
                     <form className="registerForm">
                         <h4>Create your account</h4>
+                        { this.props.err && <div className="err">{this.props.err}</div>}
                         <div className="inputCon">
                             <label>Full Name</label>
                             <input name="name" onChange={this.myChangeHandler} type="text" />
@@ -119,3 +129,15 @@ export default class Register extends Component {
         )
     }
 }
+
+const mapDispatchToProps = {
+    register
+}
+
+const mapStateToProps = (state) => {
+    return {
+        err:state.auth.err,
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

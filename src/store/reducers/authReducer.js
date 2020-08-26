@@ -19,8 +19,7 @@ export default function authReducer(state = iniState, action){
                 err:''
             }
         default:
-            return {
-                state
-            }
+            return state
+            
     }
 }

@@ -23,11 +23,18 @@ export const register = (user) => {
                     })
                 })
             })
+            .catch((err)=>{
+                dispatch({
+                    type:"AuthErr",
+                    err:err.message
+                })
+            })
         }
     )
 }
 
 export const signOut = () => {
+    console.log("here");
     return(dispatch, getState, {getFirebase}) => {
         let firebase = getFirebase()
         firebase
@@ -38,7 +45,7 @@ export const signOut = () => {
                 type:"SignedOut"
             })
         }).catch((err)=>{
-            alert('error occurred', err)
+            alert('error occurred', err.message)
         })
     }
 }

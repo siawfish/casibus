@@ -2,12 +2,16 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/images/logo.png'
 import Register from './Register'
+import { connect } from 'react-redux'
+import { signIn } from '../../store/actions/authActions'
 
-export default class Login extends Component {
+class Login extends Component {
     constructor(){
         super()
         this.state = {
-            show:false
+            show:false,
+            email:'',
+            pass:''
         }
     }
 
@@ -22,6 +26,22 @@ export default class Login extends Component {
             show:false
         })
     }
+
+    handleInput = (e) => {
+        let nam = e.target.name;
+        let val = e.target.value;
+        this.setState({[nam]: val});
+    }
+
+    onLogin = (e) => {
+        e.preventDefault()
+        let cred = {
+            email:this.state.email,
+            pass:this.state.pass
+        }
+        this.props.signIn(cred);
+    }
+
     render() {
         return (
             <div className="login">
@@ -30,15 +50,16 @@ export default class Login extends Component {
                 </div>
                 <h2>Log in to Casibus</h2>
                 <form className="loginForm">
+                    { this.props.err && <div className="err">{this.props.err}</div>}
                     <div className="inputCon">
                         <label>Email</label>
-                        <input type="email"/>
+                        <input onChange={this.handleInput} name="email" type="email"/>
                     </div>
                     <div className="inputCon">
                         <label>Password</label>
-                        <input type="password"/>
+                        <input onChange={this.handleInput} name="pass" type="password"/>
                     </div>
-                    <button className="btnBorder">Log in</button>
+                    <button onClick={this.onLogin} className="btnBorder">Log in</button>
                 </form>
                 <div className="links">
                     <Link to="#">Forgot password?</Link>
@@ -49,3 +70,17 @@ export default class Login extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        err:state.auth.err,
+        auth:state.auth.status
+    }
+}
+
+const mapDispatchToProps = {
+    signIn
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Login)

@@ -234,6 +234,14 @@ label {
 .home .left {
   width: 250px;
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.sidepaneTop {
+  justify-content: flex-start;
 }
 
 .home .left ul {
@@ -303,6 +311,24 @@ label {
 .profileHeader svg {
   color: #689626;
   font-size: x-large;
+}
+
+.logout {
+  background-color: red;
+  color: "#ffffff";
+  width: 35px;
+  height: 35px;
+  border-radius: 17.5px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  outline: none!important;
+}
+
+.err {
+  color:red;
+  font-size: small;
+  text-align: center;
 }
 
 .backIcon {

@@ -3,14 +3,18 @@ import { RiSearch2Line, RiChat1Line } from 'react-icons/ri'
 import { FiUsers } from 'react-icons/fi'
 import {
     BrowserRouter as Router,
-    Route,
+    Route, Redirect
 } from "react-router-dom"
 import Welcome from '../components/wpComponents/Welcome'
 import Login from '../components/wpComponents/Login'
+import { connect } from 'react-redux'
 
 
-export default class Welcomepage extends Component {
+class Welcomepage extends Component {
     render() {
+        if(this.props.auth){
+            return <Redirect to="/home" />
+        }
         return (
             <div className="homepage">
                 <div className="left">
@@ -30,3 +34,12 @@ export default class Welcomepage extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    
+    return {
+        auth:state.auth.status
+    }
+}
+
+export default connect(mapStateToProps)(Welcomepage)
