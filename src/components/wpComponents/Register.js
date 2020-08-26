@@ -9,7 +9,14 @@ export default class Register extends Component {
     constructor(){
         super()
         this.state = {
-            show:true
+            show:true,
+            name:"",
+            month:"",
+            day:"",
+            email:"",
+            year:"",
+            title:"",
+            pass:""
         }
     }
 
@@ -35,6 +42,17 @@ export default class Register extends Component {
         return years
     }
 
+    myChangeHandler = (event) => {
+        let nam = event.target.name;
+        let val = event.target.value;
+        this.setState({[nam]: val});
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault()
+        console.log(this.state);
+    }
+
     render() {
         return (
             <Modal show={this.props.show} onHide={this.props.handleClose}>
@@ -46,15 +64,19 @@ export default class Register extends Component {
                         <h4>Create your account</h4>
                         <div className="inputCon">
                             <label>Full Name</label>
-                            <input type="text" />
+                            <input name="name" onChange={this.myChangeHandler} type="text" />
                         </div>
                         <div className="inputCon">
                             <label>Email</label>
-                            <input type="email" />
+                            <input name="email" onChange={this.myChangeHandler} type="email" />
+                        </div>
+                        <div className="inputCon">
+                            <label>Password</label>
+                            <input name="pass" onChange={this.myChangeHandler} type="password" />
                         </div>
                         <div className="inputCon">
                             <label>Job Title</label>
-                            <input type="text" list="jobs"/>
+                            <input name="title" onChange={this.myChangeHandler} type="text" list="jobs"/>
                             <datalist id="jobs">
                                 {jobs.map((job)=>{
                                     return <option>{job}</option>
@@ -64,7 +86,7 @@ export default class Register extends Component {
                         <div className="inputRow">
                             <div className="inputCon">
                                 <label>Date</label>
-                                <input list="days" />
+                                <input name="day" onChange={this.myChangeHandler} list="days" />
                                 <datalist id="days">
                                     {this.days().map((day)=>{
                                         return <option>{day}</option>
@@ -73,7 +95,7 @@ export default class Register extends Component {
                             </div>
                             <div className="inputCon unique">
                                 <label>Month</label>
-                                <input list="months" />
+                                <input name="month" onChange={this.myChangeHandler} list="months" />
                                 <datalist id="months">
                                     {months.map((month)=>{
                                         return <option>{month}</option>
@@ -82,7 +104,7 @@ export default class Register extends Component {
                             </div>
                             <div className="inputCon">
                                 <label>Year</label>
-                                <input list="years" />
+                                <input name="year" onChange={this.myChangeHandler} list="years" />
                                 <datalist id="years">
                                     {this.years().map((year)=>{
                                         return <option>{year}</option>
@@ -90,7 +112,7 @@ export default class Register extends Component {
                                 </datalist>
                             </div>
                         </div>
-                        <button className="btnFill">Sign up</button>
+                        <button onClick={this.onSubmit} className="btnFill">Sign up</button>
                     </form>
                 </Modal.Body>
             </Modal>

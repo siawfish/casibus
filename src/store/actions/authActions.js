@@ -13,17 +13,52 @@ export const register = (user) => {
                 .set(user)
                 .then(()=>{
                     dispatch({
-                        type:'Registered',
-                        user
+                        type:'AuthSuccess',
                     })
                 })
                 .catch((err)=>{
                     dispatch({
-                        type: 'Register_Err',
-                        err
+                        type: 'AuthErr',
+                        err:err.message
                     })
                 })
             })
         }
     )
+}
+
+export const signOut = () => {
+    return(dispatch, getState, {getFirebase}) => {
+        let firebase = getFirebase()
+        firebase
+        .auth()
+        .signOut()
+        .then(()=>{
+            dispatch({
+                type:"SignedOut"
+            })
+        }).catch((err)=>{
+            alert('error occurred', err)
+        })
+    }
+}
+
+export const signIn = (cred) => {
+    return (dispatch, getState, { getFirebase }) => {
+        const firebase = getFirebase()
+        firebase
+        .auth()
+        .signInWithEmailAndPassword(cred.email, cred.pass)
+        .then(()=>{
+            dispatch({
+                type:"AuthSuccess"
+            })
+        })
+        .catch((err)=>{
+            dispatch({
+                type:"AuthErr",
+                err: err.message
+            })
+        })
+    }
 }
