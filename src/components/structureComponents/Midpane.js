@@ -10,8 +10,7 @@ export default class Midpane extends Component {
         return (
             <div className="mid">
 
-                <Header loc={ this.props.loc } />
-
+                <Header uid={this.props.uid} loc={ this.props.loc } />
                 <BrowserRouter>
                     <Route path="/home">
                         <Interests uid={this.props.uid} />
