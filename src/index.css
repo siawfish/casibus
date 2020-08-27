@@ -399,9 +399,16 @@ label {
   padding-top: 10px;
 }
 
-.postBtnsCon .leftBtns {
+.postBtnsCon .leftBtns button{
   color: #8ec63f;
+  background-color: transparent;
+  border:none;
   font-size: 30px;
+  outline: none;
+}
+
+.postBtnsCon .leftBtns button:hover{
+  color: #689626;
 }
 
 .postBtnsCon .leftBtns span {
@@ -1079,4 +1086,12 @@ input:checked + .slider:before {
 
 .addRes:hover {
   color: #8ec63f;
+}
+
+.addHistoryCard .borderBottom {
+  border-bottom: 1px solid #d2dbc5;
+}
+
+.addHistoryCard .borderTop {
+  border-top: 1px solid #d2dbc5;
 }

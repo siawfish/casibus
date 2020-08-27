@@ -8,14 +8,32 @@ export default class HomeShareCase extends Component {
     constructor(){
         super()
         this.state = {
-            msg:''
+            msg:'',
+            patientHistorySwitch:false,
         }
     }
-
+    
+    togglePatientHistory = () => {
+        if(this.state.patientHistorySwitch){
+            this.setState({
+                patientHistorySwitch:false,
+            })
+            return
+        }
+        this.setState({
+            patientHistorySwitch:true,
+        })
+    }
     onMsgInput = (e) => {
+        this.autoResize(e)
         let nam = e.target.name;
         let val = e.target.value;
         this.setState({[nam]: val});
+    }
+
+    autoResize = (e) => { 
+        e.target.style.height = 'auto'; 
+        e.target.style.height = e.target.scrollHeight + 'px'; 
     }
 
     onShare = (e) => {
@@ -31,11 +49,13 @@ export default class HomeShareCase extends Component {
                 </div>
                 <div className="inputCol">
                     <textarea name="msg" onChange={this.onMsgInput} type="text" placeholder="Share here..."/>
-                    <PatientHistoryCard />
+                    {
+                        this.state.patientHistorySwitch && <PatientHistoryCard onRemove={this.togglePatientHistory}/>
+                    }
                     <div className="postBtnsCon">
                         <div className="leftBtns">
-                            <span><FaPhotoVideo /></span>
-                            <span><FaRegAddressCard /></span>
+                            <button><FaPhotoVideo /></button>
+                            <button onClick={this.togglePatientHistory}><FaRegAddressCard /></button>
                         </div>
                         <div className="shareBtnCon">
                             <label className="anon">Anon: </label>
