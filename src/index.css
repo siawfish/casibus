@@ -996,6 +996,7 @@ input:checked + .slider:before {
   width: 20px;
   background-color: #d2dbc5;
   border-radius: 3px;
+  border: none;
 }
 
 /* On mouse-over, add a grey background color */

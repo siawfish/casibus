@@ -10,6 +10,8 @@ export default class HomeShareCase extends Component {
         this.state = {
             msg:'',
             patientHistorySwitch:false,
+            patientHistory: [],
+            patientGender:"Male"
         }
     }
     
@@ -24,6 +26,13 @@ export default class HomeShareCase extends Component {
             patientHistorySwitch:true,
         })
     }
+
+    addPatientHistory = (history) => {
+        this.setState({
+            patientHistory: [...this.state.patientHistory, history]
+        })
+    }
+
     onMsgInput = (e) => {
         this.autoResize(e)
         let nam = e.target.name;
@@ -50,7 +59,7 @@ export default class HomeShareCase extends Component {
                 <div className="inputCol">
                     <textarea name="msg" onChange={this.onMsgInput} type="text" placeholder="Share here..."/>
                     {
-                        this.state.patientHistorySwitch && <PatientHistoryCard onRemove={this.togglePatientHistory}/>
+                        this.state.patientHistorySwitch && <PatientHistoryCard onAddHistory={this.addPatientHistory} onRemove={this.togglePatientHistory}/>
                     }
                     <div className="postBtnsCon">
                         <div className="leftBtns">
