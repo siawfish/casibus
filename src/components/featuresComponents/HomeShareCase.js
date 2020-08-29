@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom' 
 import { FaRegAddressCard, FaPhotoVideo } from 'react-icons/fa'
 import avi from '../../assets/images/avi.jpg'
 import PatientHistoryCard from './PatientHistoryCard'
@@ -61,9 +62,12 @@ class HomeShareCase extends Component {
 
     render() {
         if(this.props.caseFeedback.match('show')){
+            if(this.props.caseFeedback.match('sent')){
+                ReactDOM.findDOMNode(this).querySelectorAll('textarea')[0].value=""
+            }
             setTimeout(() => {
                 this.props.resetCaseFeedback()
-            }, 3000);
+            }, 3000)
         }
         return (
             <>
@@ -99,7 +103,6 @@ class HomeShareCase extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         caseFeedback:state.caseFeed.sendCaseFileStatus
     }
