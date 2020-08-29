@@ -8,13 +8,14 @@ import moment from 'moment'
 
 export default class Bio extends Component {
     render() {
-        const { user } = this.props
+        const { user, authId } = this.props
         return (
             <div className="bioArea">
-                <button className="btnBorder">Edit profile</button>
+                {user.uid === authId ? <button className="btnBorder">Edit profile</button> : null}
+                {user.uid !== authId ? <button className="btnBorder">Follow</button> : null}
                 <div className="bioCon">
                     { user.name && <h5>Dr. {user.name}</h5>}
-                    { user.bio && <p className="desc">I love what i do, Being able to save a life is a superpower</p>}
+                    { user.bio && <p className="desc">{user.bio}</p>}
                     <p>
                         { user.loc && <small><MdAddLocation /> {user.loc}</small> }
                         { user.ins && <small><FaHospitalSymbol /> {user.ins}</small> }

@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 class Header extends Component {
     componentDidMount(){
-        this.props.getUser(this.props.uid)
+        this.props.uid && this.props.getUser(this.props.uid)
     }
     render() {
         const { loc, user } = this.props

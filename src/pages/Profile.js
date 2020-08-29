@@ -16,7 +16,7 @@ class Profile extends Component {
                 <div className="profile">
                     <div className="proBanner">
                         <Propic />
-                        <Bio user={this.props.user} />
+                        <Bio user={this.props.user} authId={this.props.auth} />
                         <div className="tabs">
                             <span className="active">Cases</span>
                             <span>Cosigns</span>
@@ -36,7 +36,8 @@ class Profile extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        user:state.user.user
+        user:state.user.user,
+        auth:state.firebase.auth.uid
     }
 }
 

@@ -6,14 +6,13 @@ import Profile from '../../pages/Profile'
 
 export default class Midpane extends Component {
     render() {
-        
+        const { props } = this.props
         return (
             <div className="mid">
-
-                <Header uid={this.props.uid} loc={ this.props.loc } />
+                <Header uid={props.match.params.uid} loc={ props.location } />
                 <BrowserRouter>
                     <Route path="/home">
-                        <Interests uid={this.props.uid} />
+                        <Interests uid={this.props.auth} />
                     </Route>
                     <Route path="/profile/:uid" component={Profile} />
                 </BrowserRouter>
