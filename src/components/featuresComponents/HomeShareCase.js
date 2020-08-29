@@ -11,7 +11,6 @@ export default class HomeShareCase extends Component {
             msg:'',
             patientHistorySwitch:false,
             patientHistory: [],
-            patientGender:"Male"
         }
     }
     
@@ -29,7 +28,7 @@ export default class HomeShareCase extends Component {
 
     addPatientHistory = (history) => {
         this.setState({
-            patientHistory: [...this.state.patientHistory, history]
+            patientHistory: history
         })
     }
 
@@ -47,7 +46,7 @@ export default class HomeShareCase extends Component {
 
     onShare = (e) => {
         e.preventDefault()
-        console.log(this.state.msg);
+        console.log(this.state);
     }
 
     render() {

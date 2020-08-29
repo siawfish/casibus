@@ -911,6 +911,30 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+.removeIcon {
+  position: relative;
+}
+
+.removeIcon button {
+  position: absolute;
+  top:3px;
+  right: 5px;
+  color: red;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  outline: none!important;
+}
+
+.removeIcon input {
+  width: 100%;
+}
+
+.removeIcon button:hover {
+  background-color: #fff0f0;
+}
+
 .shareBtnCon {
   display: flex;
   flex-direction: row;
@@ -1095,4 +1119,41 @@ input:checked + .slider:before {
 
 .addHistoryCard .borderTop {
   border-top: 1px solid #d2dbc5;
+}
+
+.displayHistoryCon {
+  display: flex;
+  flex-direction: row;
+  align-content: "center";
+  padding: 10px;
+  background-color: #cef09e;
+  border-radius: 6px;
+  margin-top: 8px;
+
+}
+
+.displayHistoryCon button {
+  align-self: center;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: red;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.displayHistoryCon button:hover {
+  background-color: #fff0f0;
+}
+
+.displayHistory {
+  display: flex;
+  flex-direction: column;
+  justify-content: "flex-start";
+  flex-grow: 1;
+}
+
+.displayHistory .answer {
+  font-size: small;
+  color: #777777;
 }
