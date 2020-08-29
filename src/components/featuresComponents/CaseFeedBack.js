@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 
 export default class CaseFeedBack extends Component {
+    
     render() {
         return (
-            <div id="snackbar">Some text some message..</div>
+            <div className={this.props.switch} id="snackbar">
+                {this.props.switch ==="show sent" ? "Case successfully sent!" : "Oops! an error occured."}
+            </div>
         )
     }
 }
