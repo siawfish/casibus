@@ -45,7 +45,6 @@ export default class PatientHistoryCard extends Component {
         }
     }
 
-
     addResponse = (e) => {
         this.setState(prevState=>{
             return {
@@ -59,6 +58,12 @@ export default class PatientHistoryCard extends Component {
             }
         })
         e.target.previousElementSibling.value = ""
+    }
+
+    removeHistory = (history) => {
+        this.setState({
+            history:this.state.history.filter(obj=>history!==obj)
+        })
     }
 
     removeResponse = (i) => {
@@ -132,23 +137,22 @@ export default class PatientHistoryCard extends Component {
                                 )
                             }
                             <input onChange={this.aInput} placeholder="eg: No" />
-                            <button disabled={disableAddResponse} onClick={this.addResponse} className="addRes"><IoMdAddCircleOutline /> Add more responses</button>
+                            <button disabled={disableAddResponse} onClick={this.addResponse} className="addRes"><IoMdAddCircleOutline /> Add response</button>
                         </div>
                         <button onClick={this.addHistory} className="addhis" disabled={disabled}><IoIosAdd /></button>
                     </div>
                     {
                         this.state.history.map(history=>
                             <div className="displayHistoryCon">
-                                {console.log(history)}
                                 <div className="displayHistory">
-                                    <span>Q: {history.q}?</span>
+                                    <span className="question">Q: {history.q}?</span>
                                     {
                                         history.a.map(a=>
-                                            <span className="answer">A: {a.res}</span>
+                                            <span className="answer"><div className="dot"></div> {a.res}</span>
                                         )
                                     }
                                 </div>
-                                <button><IoMdRemoveCircleOutline /></button>
+                                <button onClick={()=>this.removeHistory(history)}><IoMdRemoveCircleOutline /></button>
                             </div>
                         )
                     }

@@ -1140,6 +1140,7 @@ input:checked + .slider:before {
   color: red;
   border-radius: 15px;
   text-align: center;
+  outline: none!important;
 }
 
 .displayHistoryCon button:hover {
@@ -1155,5 +1156,20 @@ input:checked + .slider:before {
 
 .displayHistory .answer {
   font-size: small;
-  color: #777777;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.displayHistory .question {
+  font-weight: 700;
+  font-size: medium;
+}
+
+.displayHistory .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 3.5px;
+  background-color: #333333;
+  margin: 0 5px;
 }
