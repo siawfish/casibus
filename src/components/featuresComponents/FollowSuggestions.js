@@ -16,10 +16,8 @@ class FollowSuggestions extends Component {
                     <h5>Follow suggestions</h5>
                 </div>
                 {
-                    suggestions.length <1 ? "Sorry no sugguestions at the moment" :
-                    suggestions.forEach(suggestion => {
-                        return <SuggestionsTile suggestion={suggestion}/>
-                    })
+                    suggestions.length <1 ? <div style={{textAlign:"center", padding:20, fontSize:"small"}}>Sorry no sugguestions at the moment</div> : 
+                    suggestions && suggestions.slice(0, 3).map(suggestion=><SuggestionsTile suggestion={suggestion}/>)
                 }
                 <div className="trendsShowMore">
                     Show more

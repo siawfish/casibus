@@ -64,6 +64,11 @@ class HomeShareCase extends Component {
         if(this.props.caseFeedback.match('show')){
             if(this.props.caseFeedback.match('sent')){
                 ReactDOM.findDOMNode(this).querySelectorAll('textarea')[0].value=""
+                if(this.state.patientHistorySwitch){
+                    this.setState({
+                        patientHistorySwitch:false
+                    })
+                }
             }
             setTimeout(() => {
                 this.props.resetCaseFeedback()

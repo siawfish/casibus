@@ -34,7 +34,6 @@ export const register = (user) => {
 }
 
 export const signOut = () => {
-    console.log("here");
     return(dispatch, getState, {getFirebase}) => {
         let firebase = getFirebase()
         firebase

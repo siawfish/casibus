@@ -12,7 +12,7 @@ export default class Midpane extends Component {
                 <Header uid={props.match.params.uid} loc={ props.location } />
                 <BrowserRouter>
                     <Route path="/home">
-                        <Interests uid={this.props.auth} />
+                        <Interests uid={props.auth} />
                     </Route>
                     <Route path="/profile/:uid" component={Profile} />
                 </BrowserRouter>
