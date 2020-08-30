@@ -1,43 +1,26 @@
 import React, { Component } from 'react'
-import avi from '../../assets/images/avi.jpg'
+import { connect } from 'react-redux'
+import { getUsers } from '../../store/actions/userActions'
+import SuggestionsTile from './SuggestionsTile'
 
-export default class FollowSuggestions extends Component {
+class FollowSuggestions extends Component {
+    componentDidMount(){
+        this.props.getUsers()
+    }
     render() {
+        const { users, uid } = this.props
+        const suggestions = users.filter(user=>uid!==user.uid)
         return (
             <div style={{marginTop:20}} className="rightCardsCon">
-                    <div className="header">
-                        <h5>Follow suggestions</h5>
-                    </div>
-                <div className="suggestCard">
-                    <div className="suggestInfoCon">
-                        <img src={avi} alt="suggestImg"/>
-                        <div className="suggestInfo">
-                            <p>Dr. Riane Amanor</p>
-                            <small>Dentist</small>
-                        </div>
-                    </div>
-                    <button className="btnBorder">Follow</button>
+                <div className="header">
+                    <h5>Follow suggestions</h5>
                 </div>
-                <div className="suggestCard">
-                    <div className="suggestInfoCon">
-                        <img src={avi} alt="suggestImg"/>
-                        <div className="suggestInfo">
-                            <p>Dr. Jerome Siaw</p>
-                            <small>Doctor</small>
-                        </div>
-                    </div>
-                    <button className="btnBorder">Follow</button>
-                </div>
-                <div className="suggestCard">
-                    <div className="suggestInfoCon">
-                        <img src={avi} alt="suggestImg"/>
-                        <div className="suggestInfo">
-                            <p>Dr. Kuuku Richard</p>
-                            <small>Pharmacist</small>
-                        </div>
-                    </div>
-                    <button className="btnBorder">Follow</button>
-                </div>
+                {
+                    suggestions.length <1 ? "Sorry no sugguestions at the moment" :
+                    suggestions.forEach(suggestion => {
+                        return <SuggestionsTile suggestion={suggestion}/>
+                    })
+                }
                 <div className="trendsShowMore">
                     Show more
                 </div>
@@ -46,3 +29,15 @@ export default class FollowSuggestions extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        users:state.user.users
+    }
+}
+
+const mapDispatchToProps = {
+    getUsers
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FollowSuggestions)

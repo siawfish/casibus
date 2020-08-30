@@ -57,7 +57,9 @@ class Register extends Component {
             email:this.state.email,
             pass:this.state.pass,
             title:this.state.title,
-            dob:this.state.day+" "+this.state.month+", "+this.state.year
+            dob:this.state.day+" "+this.state.month+", "+this.state.year,
+            followers:[],
+            following:[]
         }
         this.props.register(user)
     }

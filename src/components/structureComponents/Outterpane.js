@@ -11,7 +11,7 @@ export default class Outterpane extends Component {
 
                 <Trends />
 
-                <FollowSuggestions />
+                <FollowSuggestions uid={this.props.uid} />
             </div>
         )
     }

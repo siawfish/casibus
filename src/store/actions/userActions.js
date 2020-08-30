@@ -21,3 +21,21 @@ export const getUser = (uid)=>{
         })
     }
 }
+
+export const getUsers = () => {
+    return async(dispatch, getState, { getFirestore, getFirebase }) => {
+        const firestore = getFirestore ()
+            await firestore.collection('users').onSnapshot((snapshot)=>{
+            let users = snapshot.docs.map((doc)=>{
+                return {
+                    ...doc.data(),
+                    uid:doc.id,
+                }
+            })
+            dispatch({
+                type:'AllUsers',
+                users
+            })
+        })
+    }
+}
