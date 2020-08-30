@@ -4,11 +4,13 @@ import Propic from '../components/featuresComponents/Propic'
 import Bio from '../components/featuresComponents/Bio'
 import { connect } from 'react-redux'
 import { getUser } from '../store/actions/userActions'
+import { getCases } from '../store/actions/caseActions'
 
 class Profile extends Component {
     componentDidMount(){
         const id = this.props.match.params.uid
         this.props.getUser(id)
+        this.props.getCases()
     }
     render() {
         return (
@@ -23,8 +25,9 @@ class Profile extends Component {
                             <span>Bookmarks</span>
                         </div>
                         <div className="tabsContent">
-                            <Case />
-                            <Case />
+                            {
+                                this.props.cases.map(obj=><Case casefile={obj} />)
+                            }
                         </div>
                     </div>
                 </div>
@@ -34,15 +37,18 @@ class Profile extends Component {
 }
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+    console.log(state);
     return {
         user:state.user.user,
-        auth:state.firebase.auth.uid
+        auth:state.firebase.auth.uid,
+        cases:state.cases.cases.filter(casefile=>casefile.creator === props.match.params.uid)
     }
 }
 
 const mapDispatchToProps = {
-    getUser
+    getUser,
+    getCases
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)

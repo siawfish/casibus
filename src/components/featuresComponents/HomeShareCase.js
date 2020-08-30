@@ -55,7 +55,8 @@ class HomeShareCase extends Component {
             caption:this.state.msg,
             history:this.state.patientHistory,
             hasHistory:this.state.patientHistorySwitch,
-            creator:this.props.uid
+            creator:this.props.uid,
+            createdAt:new Date()
         }
         this.props.caseFile(caseFile)
     }
@@ -109,7 +110,7 @@ class HomeShareCase extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        caseFeedback:state.caseFeed.sendCaseFileStatus
+        caseFeedback:state.cases.sendCaseFileStatus
     }
 }
 

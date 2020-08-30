@@ -799,8 +799,8 @@ label {
 }
 
 .sent {
-  background-color: #f0fcde; /* Black background color */
-  color: #689626; /* White text color */
+  background-color: #689626; /* Black background color */
+  color: #ffffff; /* White text color */
 }
 
 .failed {

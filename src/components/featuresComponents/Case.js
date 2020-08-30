@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
-import caseImg from '../../assets/images/caseImg.jpg'
+// import caseImg from '../../assets/images/caseImg.jpg'
 import {  FaSignature } from 'react-icons/fa'
 import { GoComment } from 'react-icons/go'
 import { RiShareForwardBoxLine } from 'react-icons/ri'
 import avi from '../../assets/images/avi.jpg'
+import { connect } from 'react-redux'
+import moment from 'moment'
 
-export default class Case extends Component {
+class Case extends Component {
     render() {
+        const { casefile, user } = this.props
+        const author = user[0]
         return (
             <>
                 <div className="casesCon">
@@ -15,44 +19,19 @@ export default class Case extends Component {
                     </div>
                     <div className="inputCol">
                         <div className="caseAuthor">
-                            <span className="author">Dr. Gerald Amanor</span>
+                            <span className="author">Dr. {author && author.name}</span>
                             <div className="dot"></div>
-                            <span className="timestamp">20m</span>
+                            <span className="timestamp">{moment(casefile.createdAt.toDate()).fromNow()}</span>
                         </div>
                         <p>
-                            Qui id dolor do duis labore aliquip qui quis velit. 
-                            Lorem et consectetur pariatur nisi occaecat nulla magna do ut pariatur occaecat. 
-                            Consequat eu do sit et est qui.
+                            {casefile.caption}
                         </p>
-                        <div className="mediaCon">
+                        {/* <div className="mediaCon">
                             <img src={caseImg} alt="caseMedia"/>
                             <img src={caseImg} alt="caseMedia"/>
                             <img src={caseImg} alt="caseMedia"/>
                             <img src={caseImg} alt="caseMedia"/>
-                        </div>
-                        <div className="actionBtns">
-                            <span><GoComment /></span>
-                            <span><RiShareForwardBoxLine /></span>
-                            <span><FaSignature /></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="casesCon">
-                    <div className="casesAvatarCon">
-                        <img src={avi} alt="avatar"/>
-                    </div>
-                    <div className="inputCol">
-                        <div className="caseAuthor">
-                            <span className="author">Dr. Amma Darkoa</span>
-                            <div className="dot"></div>
-                            <span className="timestamp">20m</span>
-                        </div>
-                        <p>
-                            Qui id dolor do duis labore aliquip qui quis velit. 
-                            Lorem et consectetur pariatur nisi occaecat nulla magna do ut pariatur occaecat. 
-                            Consequat eu do sit et est qui.
-                        </p>
+                        </div> */}
                         <div className="actionBtns">
                             <span><GoComment /></span>
                             <span><RiShareForwardBoxLine /></span>
@@ -64,3 +43,11 @@ export default class Case extends Component {
         )
     }
 }
+
+const mapStateToProps = (state, props) => {
+    return {
+        user:state.user.users.filter(user=>user.uid === props.casefile.creator)
+    }
+}
+
+export default connect(mapStateToProps)(Case)

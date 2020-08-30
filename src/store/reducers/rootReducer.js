@@ -7,7 +7,7 @@ import caseReducer from './caseReducer'
 const rootReducer = combineReducers({
     auth:authReducer,
     user:userReducer,
-    caseFeed:caseReducer,
+    cases:caseReducer,
     firebase:firebaseReducer
 })
 

@@ -30,3 +30,21 @@ export const resetCaseFeedback = () => {
         }
     )
 }
+
+export const getCases = () => {
+    return async(dispatch, getState, { getFirestore }) => {
+        const firestore = getFirestore ()
+            await firestore.collection('CaseFiles').orderBy("createdAt", "desc").onSnapshot((snapshot)=>{
+            let cases = snapshot.docs.map((doc)=>{
+                return {
+                    ...doc.data(),
+                    cid:doc.id,
+                }
+            })
+            dispatch({
+                type:'Cases',
+                cases
+            })
+        })
+    }
+}
