@@ -8,7 +8,7 @@ class Header extends Component {
         this.props.uid && this.props.getUser(this.props.uid)
     }
     render() {
-        const { loc, user } = this.props
+        const { loc, user, cases } = this.props
         return (
             <div className="header">
                 { loc.pathname.match('/profile') ?
@@ -18,7 +18,7 @@ class Header extends Component {
                         </div>
                         <div>
                             { user.name && <h6>Dr. {user.name}</h6> }
-                            <small>250 Cases</small>
+                            <small>{ cases.length } cases</small>
                         </div>
                     </div> :
                     <h4>Home</h4>
@@ -28,9 +28,10 @@ class Header extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
     return {
-        user:state.user.user
+        user:state.user.user,
+        cases:state.cases.cases.filter(obj=>obj.creator===props.uid)
     }
 }
 

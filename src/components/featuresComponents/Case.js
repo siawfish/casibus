@@ -6,6 +6,7 @@ import { RiShareForwardBoxLine } from 'react-icons/ri'
 import avi from '../../assets/images/avi.jpg'
 import { connect } from 'react-redux'
 import moment from 'moment'
+import DisplayPatientHistory from './DisplayPatientHistory'
 
 class Case extends Component {
     render() {
@@ -32,6 +33,9 @@ class Case extends Component {
                             <img src={caseImg} alt="caseMedia"/>
                             <img src={caseImg} alt="caseMedia"/>
                         </div> */}
+                        {
+                             casefile.hasHistory ? <DisplayPatientHistory history={casefile.history} /> : null
+                        }
                         <div className="actionBtns">
                             <span><GoComment /></span>
                             <span><RiShareForwardBoxLine /></span>
