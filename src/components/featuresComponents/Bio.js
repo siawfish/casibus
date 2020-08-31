@@ -9,6 +9,7 @@ import moment from 'moment'
 export default class Bio extends Component {
     render() {
         const { user, authId } = this.props
+        console.log(user);
         return (
             <div className="bioArea">
                 {user.uid === authId ? <button className="btnBorder">Edit profile</button> : null}
@@ -23,7 +24,7 @@ export default class Bio extends Component {
                         { user.createdAt && <small><BsFillCalendarFill /> {moment((user.createdAt).toDate()).calendar()}</small> }
                     </p>
                     <div className="followersCount">
-                        <Link><span>3,000</span> Followers</Link><Link><span>1,000</span> Following</Link>
+                        <Link><span>{user.followers && user.followers.length}</span> Followers</Link><Link><span>{user.followers && user.following.length}</span> Following</Link>
                     </div>
                 </div>
             </div>

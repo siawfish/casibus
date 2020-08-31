@@ -39,3 +39,42 @@ export const getUsers = () => {
         })
     }
 }
+
+export const follow = (follower, following) => {
+    return (
+        (dispatch, getState, {getFirestore})=>{
+            const firestore = getFirestore()
+            firestore
+            .collection("users")
+            .doc(following)
+            .update({
+                followers:firestore.FieldValue.arrayUnion(follower)
+            })
+            .then(()=>{
+                firestore
+                .collection("user")
+                .doc(follower)
+                .update({
+                    following:firestore.FieldValue.arrayUnion(following)
+                })
+                .then(()=>{
+                    dispatch({
+                       type:"Followed" 
+                    })
+                })
+                .catch(err=>{
+                    dispatch({
+                        type:"FollowErr",
+                        err:err.message
+                    })
+                })
+            })
+            .catch(err=>{
+                dispatch({
+                    type:"FollowErr",
+                    err:err.message
+                })
+            })
+        }
+    )
+}

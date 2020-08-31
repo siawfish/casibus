@@ -33,7 +33,7 @@ export default class DisplayPatientHistory extends Component {
                     {history.history.map(h=>
                         <>
                             <div className="question">{h.q}</div>
-                            {h.a.map(a2=><div className="answer">{a2.res}</div>)}
+                            {h.a.map(a2=><div className="answer"><div className="dot"></div>{a2.res}</div>)}
                         </>
                     )}
                 </div>
