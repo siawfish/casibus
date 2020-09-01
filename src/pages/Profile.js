@@ -38,7 +38,6 @@ class Profile extends Component {
 
 
 const mapStateToProps = (state, props) => {
-    console.log(state);
     return {
         user:state.user.user,
         auth:state.firebase.auth.uid,

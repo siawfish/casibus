@@ -9,7 +9,9 @@ class FollowSuggestions extends Component {
     }
     render() {
         const { users, uid } = this.props
-        const suggestions = users.filter(user=>uid!==user.uid)
+        const tempSuggestions = users.filter(user=>uid!==user.uid)
+        const user = users.filter(user=>uid===user.uid)
+        const suggestions = tempSuggestions.filter(sug=>!user[0].following.includes(sug.uid))
         return (
             <div style={{marginTop:20}} className="rightCardsCon">
                 <div className="header">
@@ -17,7 +19,7 @@ class FollowSuggestions extends Component {
                 </div>
                 {
                     suggestions.length <1 ? <div style={{textAlign:"center", padding:20, fontSize:"small"}}>Sorry no sugguestions at the moment</div> : 
-                    suggestions && suggestions.slice(0, 3).map(suggestion=><SuggestionsTile suggestion={suggestion}/>)
+                    suggestions && suggestions.slice(0, 3).map(suggestion=><SuggestionsTile uid={uid} suggestion={suggestion}/>)
                 }
                 <div className="trendsShowMore">
                     Show more

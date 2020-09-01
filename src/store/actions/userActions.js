@@ -52,7 +52,7 @@ export const follow = (follower, following) => {
             })
             .then(()=>{
                 firestore
-                .collection("user")
+                .collection("users")
                 .doc(follower)
                 .update({
                     following:firestore.FieldValue.arrayUnion(following)

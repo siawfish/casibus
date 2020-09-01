@@ -9,7 +9,6 @@ import moment from 'moment'
 export default class Bio extends Component {
     render() {
         const { user, authId } = this.props
-        console.log(user);
         return (
             <div className="bioArea">
                 {user.uid === authId ? <button className="btnBorder">Edit profile</button> : null}

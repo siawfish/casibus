@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import avi from '../../assets/images/avi.jpg'
+import { connect } from 'react-redux'
+import { follow } from '../../store/actions/userActions'
 
-export default class SuggestionsTile extends Component {
+
+class SuggestionsTile extends Component {
+    follow = (uid) => {
+        this.props.follow(this.props.uid, uid)
+    }
     render() {
         const { suggestion } = this.props
         return (
@@ -13,8 +19,14 @@ export default class SuggestionsTile extends Component {
                         <small>{suggestion.title}</small>
                     </div>
                 </div>
-                <button className="btnBorder">Follow</button>
+                <button onClick={()=>this.follow(suggestion.uid)} className="btnBorder">Follow</button>
             </div>
         )
     }
 }
+
+const mapDispatchToProps = {
+    follow
+}
+
+export default connect(null, mapDispatchToProps)(SuggestionsTile)

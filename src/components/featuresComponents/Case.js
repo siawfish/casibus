@@ -7,6 +7,7 @@ import avi from '../../assets/images/avi.jpg'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import DisplayPatientHistory from './DisplayPatientHistory'
+import { Link } from 'react-router-dom'
 
 class Case extends Component {
     render() {
@@ -20,7 +21,7 @@ class Case extends Component {
                     </div>
                     <div className="inputCol">
                         <div className="caseAuthor">
-                            <span className="author">Dr. {author && author.name}</span>
+                            {author && <Link to={"/profile/"+author.uid}><span className="author">Dr. {author.name}</span></Link>}
                             <div className="dot"></div>
                             <span className="timestamp">{moment(casefile.createdAt.toDate()).fromNow()}</span>
                         </div>
