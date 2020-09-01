@@ -488,7 +488,7 @@ label {
   font-size: 18px;
 }
 
-.actionBtns span {
+.actionBtns button {
   cursor: pointer;
   color: #999999;
   width: 38px;
@@ -496,9 +496,12 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: transparent;
+  border:none;
+  outline: none!important;
 }
 
-.actionBtns span:hover {
+.actionBtns button:hover {
   background-color: #cef09e;
   color: #689626;
   border-radius: 50%;
@@ -1241,4 +1244,58 @@ input:checked + .slider:before {
   border-radius: 3.5px;
   background-color: #333333;
   margin: 0 5px;
+}
+
+.commentSection {
+  position: relative;
+  margin: 10px 0px;
+}
+
+.inputCol .hide {
+  display: none;
+}
+
+.inputCol .show {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.commentAvatarCon img {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  margin-right: 10px;
+}
+
+.commentSection .additionalInfo {
+  position: absolute;
+  right: 5px;
+  bottom:5px;
+
+}
+
+.commentSection small {
+  font-size: smaller;
+  position: absolute;
+  left: 50px;
+  bottom: -20px;
+}
+
+.additionalInfo svg {
+  font-size: medium;
+  color: #689626;
+  margin-right: 5px;
+}
+
+.commentSection textarea {
+  width: 100%;
+  border-radius: 25px;
+  border: 1px solid #8ec63f;
+  background-color: #f0fcde;
+  font-size: small;
+  padding: 5px 10px;
+  outline: none;
+  resize: none;
 }

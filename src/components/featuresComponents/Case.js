@@ -8,8 +8,51 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import DisplayPatientHistory from './DisplayPatientHistory'
 import { Link } from 'react-router-dom'
+import { FaRegAddressCard, FaPhotoVideo } from 'react-icons/fa'
+
 
 class Case extends Component {
+    constructor(){
+        super()
+        this.state = {
+            commentVisibility:"commentSection hide",
+            comment:""
+        }
+    }
+
+    toggleCommentVisibility = ()=>{
+        if(this.state.commentVisibility==="commentSection hide"){
+            this.setState({
+                commentVisibility:"commentSection show"
+            })
+            return
+        }
+        this.setState({
+            commentVisibility:"commentSection hide"
+        })
+    }
+
+    commentInput = (e) => {
+        this.autoResize(e)
+        this.setState({
+            comment:e.target.value
+        })
+    }
+
+    autoResize = (e) => { 
+        e.target.style.height = 'auto'; 
+        e.target.style.height = e.target.scrollHeight + 'px'; 
+    }
+
+    onHitEnter = (e, cid, uid) => {
+        if(e.keyCode === 13){
+            e.preventDefault()
+            // put the login here
+            console.log("CID", cid);
+            console.log("UID", uid);
+         }
+    }
+
     render() {
         const { casefile, user } = this.props
         const author = user[0]
@@ -38,9 +81,20 @@ class Case extends Component {
                              casefile.hasHistory ? <DisplayPatientHistory history={casefile.history} /> : null
                         }
                         <div className="actionBtns">
-                            <span><GoComment /></span>
-                            <span><RiShareForwardBoxLine /></span>
-                            <span><FaSignature /></span>
+                            <button onClick={this.toggleCommentVisibility}><GoComment /></button>
+                            <button><RiShareForwardBoxLine /></button>
+                            <button><FaSignature /></button>
+                        </div>
+                        <div className={this.state.commentVisibility}>
+                            <div className="commentAvatarCon">
+                                <img src={avi} alt="avatar"/>
+                            </div>
+                            <textarea rows="1" onKeyDown={(e)=>this.onHitEnter(e, casefile.cid, author.uid)} onChange={this.commentInput} type="text" placeholder="Enter contribution here..."></textarea>
+                            <small>Hit enter to send contribution</small>
+                            <div className="additionalInfo">
+                                <FaPhotoVideo />
+                                <FaRegAddressCard />
+                            </div>
                         </div>
                     </div>
                 </div>
