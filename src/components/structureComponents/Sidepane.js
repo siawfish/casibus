@@ -14,7 +14,7 @@ export default class Sidepane extends Component {
                         <img src={logo} alt="logo"/>
                     </div>
                     <ul>
-                        <li><Link to="/home"><span><FaHospital /></span>Interests</Link></li>
+                        <li><Link to="/"><span><FaHospital /></span>Interests</Link></li>
                         <li><Link to="#"><span><FaSlackHash /></span>Cases</Link></li>
                         <li><Link to="#"><span><FaBell /></span>Notifications</Link></li>
                         <li><Link to="#"><span><FaPager /></span>Pagers</Link></li>

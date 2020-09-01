@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import HomeShareCase from './HomeShareCase'
+import Header from './Header'
 import Case from './Case'
 import { connect } from 'react-redux'
 import { getCases } from '../../store/actions/caseActions'
@@ -9,10 +10,11 @@ class Interests extends Component {
         this.props.getCases()
     }
     render() {
-        const { cases } = this.props
+        const { cases, match, location, uid } = this.props
         return (
             <>
-                <HomeShareCase uid={this.props.uid} />
+                <Header uid={match.params.uid} loc={location} />
+                <HomeShareCase uid={uid} />
                 {
                     cases.map(obj=><Case casefile={obj} />)
                 }
@@ -23,7 +25,8 @@ class Interests extends Component {
 
 const mapStateToProps = (state) => {
     return{
-        cases:state.cases.cases
+        cases:state.cases.cases,
+        uid:state.firebase.auth.uid
     }
 }
 

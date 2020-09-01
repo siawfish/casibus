@@ -12,7 +12,11 @@ export default class Bio extends Component {
         return (
             <div className="bioArea">
                 {user.uid === authId ? <button className="btnBorder">Edit profile</button> : null}
-                {user.uid !== authId ? <button className="btnBorder">Follow</button> : null}
+                {user.uid !== authId ? 
+                    <>
+                    { user.followers &&  user.followers.includes(authId) ? <button className="btnBorder">Unfollow</button> : <button className="btnBorder">Follow</button> }
+                    </> : 
+                null}
                 <div className="bioCon">
                     { user.name && <h5>Dr. {user.name}</h5>}
                     { user.bio && <p className="desc">{user.bio}</p>}
@@ -30,3 +34,4 @@ export default class Bio extends Component {
         )
     }
 }
+

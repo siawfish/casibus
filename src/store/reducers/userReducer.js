@@ -18,9 +18,9 @@ export default function userReducer(state = iniState, action){
                 ...state,
                 users:action.users
             }
-        case "Followed":
+        case "ConnectionSuccess":
             return state
-        case "FollowErr":
+        case "ConnectionErr":
             console.log(action.err)
             return state
         default:

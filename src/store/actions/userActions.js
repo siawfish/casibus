@@ -1,22 +1,11 @@
 export const getUser = (uid)=>{
-    return (dispatch, getState, {getFirestore, getFirebase}) => {
-        const firestore = getFirestore()
-        firestore
-        .collection('users')
-        .doc(uid)
-        .get()
-        .then((res)=>{
+    return async(dispatch, getState, { getFirestore, getFirebase }) => {
+        const firestore = getFirestore ()
+            await firestore.collection('users').doc(uid).onSnapshot((snapshot)=>{
+            let user = snapshot.data()
             dispatch({
-                type: 'User', 
-                user: {
-                    ...res.data(),
-                    uid
-                }
-            })
-        }).catch((err)=>{
-            dispatch({
-                type: 'UserErr', 
-                err:err.message
+                type:'User',
+                user
             })
         })
     }
@@ -59,19 +48,58 @@ export const follow = (follower, following) => {
                 })
                 .then(()=>{
                     dispatch({
-                       type:"Followed" 
+                       type:"ConnectionSuccess" 
                     })
                 })
                 .catch(err=>{
                     dispatch({
-                        type:"FollowErr",
+                        type:"ConnectionErr",
                         err:err.message
                     })
                 })
             })
             .catch(err=>{
                 dispatch({
-                    type:"FollowErr",
+                    type:"ConnectionErr",
+                    err:err.message
+                })
+            })
+        }
+    )
+}
+
+export const unfollow = (unfollower, unfollowing) => {
+    return(
+        (dispatch, {getFirestore})=>{
+            const firestore = getFirestore()
+            firestore
+            .collection("users")
+            .doc(unfollowing)
+            .update({
+                followers:firestore.FieldValue.arrayRemove(unfollower)
+            })
+            .then(()=>{
+                firestore
+                .collection("users")
+                .doc(unfollower)
+                .update({
+                    following:firestore.FieldValue.arrayRemove(unfollowing)
+                })
+                .then(()=>{
+                    dispatch({
+                        type:"ConnectionSuccess"
+                    })
+                })
+                .catch(err=>{
+                    dispatch({
+                        type:"ConnectionErr",
+                        err:err.message
+                    })
+                })
+            })
+            .catch(err=>{
+                dispatch({
+                    type:"ConnectionErr",
                     err:err.message
                 })
             })

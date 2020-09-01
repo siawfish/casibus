@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Case from '../components/featuresComponents/Case'
 import Propic from '../components/featuresComponents/Propic'
+import Header from '../components/featuresComponents/Header'
 import Bio from '../components/featuresComponents/Bio'
 import { connect } from 'react-redux'
 import { getUser } from '../store/actions/userActions'
@@ -15,6 +16,7 @@ class Profile extends Component {
     render() {
         return (
            <>
+                <Header uid={this.props.match.params.uid} loc={this.props.location} />
                 <div className="profile">
                     <div className="proBanner">
                         <Propic />
