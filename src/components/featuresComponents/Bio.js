@@ -4,9 +4,18 @@ import { FaHospitalSymbol, FaBirthdayCake } from 'react-icons/fa'
 import { BsFillCalendarFill } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
+import { follow, unfollow } from '../../store/actions/userActions'
+import { connect } from 'react-redux'
 
 
-export default class Bio extends Component {
+class Bio extends Component {
+    follow = () => {
+        this.props.follow(this.props.authId, this.props.user.uid)
+    }
+
+    unfollow = () => {
+        this.props.unfollow(this.props.authId, this.props.user.uid)
+    }
     render() {
         const { user, authId } = this.props
         return (
@@ -14,7 +23,7 @@ export default class Bio extends Component {
                 {user.uid === authId ? <button className="btnBorder">Edit profile</button> : null}
                 {user.uid !== authId ? 
                     <>
-                    { user.followers &&  user.followers.includes(authId) ? <button className="btnBorder">Unfollow</button> : <button className="btnBorder">Follow</button> }
+                    { user.followers &&  user.followers.includes(authId) ? <button onClick={this.unfollow} className="btnBorder">Unfollow</button> : <button onClick={this.follow} className="btnBorder">Follow</button> }
                     </> : 
                 null}
                 <div className="bioCon">
@@ -34,4 +43,11 @@ export default class Bio extends Component {
         )
     }
 }
+
+const mapDispatchToProps = {
+    follow,
+    unfollow
+}
+
+export default connect(null, mapDispatchToProps)(Bio)
 

@@ -5,7 +5,10 @@ export const getUser = (uid)=>{
             let user = snapshot.data()
             dispatch({
                 type:'User',
-                user
+                user:{
+                    ...user,
+                    uid
+                }
             })
         })
     }
@@ -70,7 +73,7 @@ export const follow = (follower, following) => {
 
 export const unfollow = (unfollower, unfollowing) => {
     return(
-        (dispatch, {getFirestore})=>{
+        (dispatch, getState, {getFirestore})=>{
             const firestore = getFirestore()
             firestore
             .collection("users")
