@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import avi from '../../assets/images/avi.jpg'
 import { connect } from 'react-redux'
+import moment from 'moment'
 
 class ContributionsDisplay extends Component {
     render() {
@@ -11,6 +12,9 @@ class ContributionsDisplay extends Component {
                 </div>
                 <div className="commentBubble">
                     <strong>{this.props.author && this.props.author[0].name}</strong> {this.props.contribution.caption}
+                    <small>
+                        {moment(this.props.contribution.createdAt.toDate()).fromNow()}
+                    </small>
                 </div>
             </div>
         )

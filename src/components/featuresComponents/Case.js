@@ -20,7 +20,10 @@ class Case extends Component {
         this.state = {
             commentVisibility:"commentSection hide",
             comment:"",
-            hasHistory:false
+            hasHistory:false,
+            commentCount:0,
+            repostCount:0,
+            cosignCount:0
         }
     }
 
@@ -46,6 +49,12 @@ class Case extends Component {
     autoResize = (e) => { 
         e.target.style.height = 'auto'; 
         e.target.style.height = e.target.scrollHeight + 'px'; 
+    }
+
+    commentCount = (num) => {
+        this.setState({
+            commentCount:num
+        })
     }
 
     onHitEnter = (e, cid, uid) => {
@@ -106,9 +115,15 @@ class Case extends Component {
                              casefile.hasHistory ? <DisplayPatientHistory history={casefile.history} /> : null
                         }
                         <div className="actionBtns">
-                            <button onClick={this.toggleCommentVisibility}><GoComment /></button>
-                            <button><RiShareForwardBoxLine /></button>
-                            <button><FaSignature /></button>
+                            <div className="btnRow">
+                                <button onClick={this.toggleCommentVisibility}><GoComment /></button><small>{this.state.commentCount}</small>
+                            </div>
+                            <div className="btnRow">
+                                <button><RiShareForwardBoxLine /></button><small>{this.state.repostCount}</small>
+                            </div>
+                            <div className="btnRow">
+                                <button><FaSignature /></button><small>{this.state.cosignCount}</small>
+                            </div>
                         </div>
                         <Contribution 
                             casefile={casefile} 
@@ -116,7 +131,8 @@ class Case extends Component {
                             auth={this.props.auth}
                             commentInput={this.commentInput}  
                             onHitEnter={this.onHitEnter} 
-                            commentVisibility={this.state.commentVisibility}  
+                            commentVisibility={this.state.commentVisibility}
+                            commentCount={this.commentCount}  
                         />
                     </div>
                 </div>

@@ -9,10 +9,13 @@ class Contribution extends Component {
 
     componentDidMount(){
         this.props.getContributions(this.props.casefile.cid)
+        
     }
 
     render() {
-        
+        if(this.props.contributions.length >= 1){
+            this.props.commentCount(this.props.contributions.length)
+        }
         return (
             <div className={this.props.commentVisibility}>
                 {

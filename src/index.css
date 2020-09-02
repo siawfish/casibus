@@ -1262,6 +1262,13 @@ input:checked + .slider:before {
   display: none;
 }
 
+.commentBubble small {
+  position: absolute;
+  bottom: -15px;
+  right: 0;
+  color: #777777;
+}
+
 .inputCol .show {
   display: flex;
   flex-direction: column;
@@ -1287,8 +1294,11 @@ input:checked + .slider:before {
   font-size: small;
   background-color: #689626;
   color: #ffffff;
-  border-radius: 20px;
+  border-radius: 15px;
   padding: 5px 10px;
+  position: relative;
+  margin-bottom: 10px;
+  
 }
 
 .commentDisplayCon {
@@ -1298,9 +1308,21 @@ input:checked + .slider:before {
   margin-top: 5px;
   width: 100%;
   max-height: 200px;
+  min-height: 80px;
   overflow: auto;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;
+}
+
+.btnRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.btnRow small {
+  padding-left: 5px;
 }
 
 .commentDisplayCon::-webkit-scrollbar {
@@ -1312,7 +1334,7 @@ input:checked + .slider:before {
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-top:10px
+  margin-top:10px;
 }
 
 .commentSection span {
