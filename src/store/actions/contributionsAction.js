@@ -30,3 +30,24 @@ export const resetContributionFeedback = () => {
         }
     )
 }
+
+export const getContributions = (cid) => {
+    return async(dispatch, getState, {getFirestore})=>{
+        const firestore = getFirestore()
+        await firestore
+        .collection("Contributions")
+        .orderBy("createdAt")
+        .onSnapshot((snapshot)=>{
+            let contributions = snapshot.docs.map(doc=>{
+                return {
+                    ...doc.data(),
+                    cid
+                }
+            })
+            dispatch({
+                type:'Contributions',
+                contributions
+            })
+        })
+    }
+}

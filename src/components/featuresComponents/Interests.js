@@ -16,7 +16,7 @@ class Interests extends Component {
                 <Header uid={match.params.uid} loc={location} />
                 <HomeShareCase uid={uid} />
                 {
-                    cases.map(obj=><Case casefile={obj} />)
+                    cases.map(obj=><Case auth={uid} casefile={obj} />)
                 }
             </>
         )

@@ -28,7 +28,7 @@ class Profile extends Component {
                         </div>
                         <div className="tabsContent">
                             {
-                                this.props.cases.map(obj=><Case casefile={obj} />)
+                                this.props.cases.map(obj=><Case auth={this.props.auth} casefile={obj} />)
                             }
                         </div>
                     </div>

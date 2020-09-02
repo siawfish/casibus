@@ -80,6 +80,7 @@ class Case extends Component {
                 this.props.resetContributionFeedback()
             }, 3000)
         }
+        // console.log(this.props.auth);
         return (
             <>
                 <div className="casesCon">
@@ -112,6 +113,7 @@ class Case extends Component {
                         <Contribution 
                             casefile={casefile} 
                             author={author} 
+                            auth={this.props.auth}
                             commentInput={this.commentInput}  
                             onHitEnter={this.onHitEnter} 
                             commentVisibility={this.state.commentVisibility}  

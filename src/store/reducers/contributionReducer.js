@@ -21,6 +21,11 @@ export default function contributionReducer(state = inistate, action){
                 ...state,
                 contributionFeed:""
             }
+        case "Contributions":
+            return {
+                ...state,
+                contributions:action.contributions
+            }
         default:
             return state
     }
