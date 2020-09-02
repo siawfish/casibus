@@ -5,9 +5,19 @@ let inistate = {
 export default function contributionReducer(state = inistate, action){
     switch(action.type){
         case "ContributionSuccess":
-            return state
+            return {
+                contributionFeed:"show sent"
+            }
         case "ContributionErr":
-            return state
+            console.log(action.err);
+            return {
+                contributionFeed:"show failed"
+            }
+        case "ResetContributionsFeedback":
+            return {
+                ...state,
+                contributionFeed:""
+            }
         default:
             return state
     }

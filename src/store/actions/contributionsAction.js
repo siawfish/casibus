@@ -20,3 +20,13 @@ export const contribute = (contribution) => {
         }
     )
 }
+
+export const resetContributionFeedback = () => {
+    return(
+        (dispatch)=>{
+            dispatch({
+                type:"ResetContributionsFeedback"
+            })
+        }
+    )
+}

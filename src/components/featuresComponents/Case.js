@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 // import caseImg from '../../assets/images/caseImg.jpg'
 import {  FaSignature } from 'react-icons/fa'
 import { GoComment } from 'react-icons/go'
@@ -9,6 +10,9 @@ import moment from 'moment'
 import DisplayPatientHistory from './DisplayPatientHistory'
 import { Link } from 'react-router-dom'
 import { FaRegAddressCard, FaPhotoVideo } from 'react-icons/fa'
+import { contribute, resetContributionFeedback } from '../../store/actions/contributionsAction'
+import CaseFeedBack from './CaseFeedBack'
+import CommentDisplay from './CommentDisplay'
 
 
 class Case extends Component {
@@ -16,7 +20,8 @@ class Case extends Component {
         super()
         this.state = {
             commentVisibility:"commentSection hide",
-            comment:""
+            comment:"",
+            hasHistory:false
         }
     }
 
@@ -48,14 +53,34 @@ class Case extends Component {
         if(e.keyCode === 13){
             e.preventDefault()
             // put the login here
-            console.log("CID", cid);
-            console.log("UID", uid);
+            let contribution = {
+                caseId: cid,
+                creator: uid,
+                caption:this.state.comment,
+                hasHistory:this.state.hasHistory,
+                createdAt:new Date(),
+                history:[]
+            }
+            this.props.contribute(contribution)
          }
     }
 
     render() {
         const { casefile, user } = this.props
         const author = user[0]
+        if(this.props.contributionsFeed.match('show')){
+            if(this.props.contributionsFeed.match('sent')){
+                ReactDOM.findDOMNode(this).querySelectorAll('textarea')[0].value=""
+                if(this.state.comment!==""){
+                    this.setState({
+                        comment:""
+                    })
+                }
+            }
+            setTimeout(() => {
+                this.props.resetContributionFeedback()
+            }, 3000)
+        }
         return (
             <>
                 <div className="casesCon">
@@ -85,12 +110,15 @@ class Case extends Component {
                             <button><RiShareForwardBoxLine /></button>
                             <button><FaSignature /></button>
                         </div>
+                        <div className="commentDisplayCon">
+                            <CommentDisplay />
+                        </div>
                         <div className={this.state.commentVisibility}>
                             <div className="commentAvatarCon">
                                 <img src={avi} alt="avatar"/>
                             </div>
                             <textarea rows="1" onKeyDown={(e)=>this.onHitEnter(e, casefile.cid, author.uid)} onChange={this.commentInput} type="text" placeholder="Enter contribution here..."></textarea>
-                            <small>Hit enter to send contribution</small>
+                            <span>Hit enter to send contribution</span>
                             <div className="additionalInfo">
                                 <FaPhotoVideo />
                                 <FaRegAddressCard />
@@ -98,6 +126,7 @@ class Case extends Component {
                         </div>
                     </div>
                 </div>
+                <CaseFeedBack switch={this.props.contributionsFeed} />
             </>
         )
     }
@@ -105,8 +134,14 @@ class Case extends Component {
 
 const mapStateToProps = (state, props) => {
     return {
-        user:state.user.users.filter(user=>user.uid === props.casefile.creator)
+        user:state.user.users.filter(user=>user.uid === props.casefile.creator),
+        contributionsFeed:state.contributions.contributionFeed
     }
 }
 
-export default connect(mapStateToProps)(Case)
+const mapDispatchToProps = {
+    contribute,
+    resetContributionFeedback
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Case)

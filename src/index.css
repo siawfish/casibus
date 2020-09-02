@@ -877,8 +877,8 @@ label {
   visibility: visible; /* Show the snackbar */
   /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
   However, delay the fade out process for 2.5 seconds */
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  -webkit-animation: fadein 0.1s, fadeout 0.5s 2.5s;
+  animation: fadein 0.1s, fadeout 0.5s 2.5s;
 }
 
 /* Animations to fade the snackbar in and out */
@@ -1276,8 +1276,31 @@ input:checked + .slider:before {
 
 }
 
-.commentSection small {
-  font-size: smaller;
+.commentBubble {
+  font-size: small;
+  background-color: #689626;
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+.commentDisplayCon {
+  border: 1px solid #cef09e;
+  border-radius: 15px;
+  padding: 0 10px 10px;
+  margin-top: 5px;
+}
+
+.commentDisplay {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top:10px
+}
+
+.commentSection span {
+  font-size: 12px;
   position: absolute;
   left: 50px;
   bottom: -20px;
