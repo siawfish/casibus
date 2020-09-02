@@ -109,10 +109,16 @@ class Case extends Component {
                             <button><RiShareForwardBoxLine /></button>
                             <button><FaSignature /></button>
                         </div>
-                        <Contribution casefile={casefile} author={author} commentInput={this.commentInput}  onHitEnter={this.onHitEnter} commentVisibility={this.state.commentVisibility}  />
+                        <Contribution 
+                            casefile={casefile} 
+                            author={author} 
+                            commentInput={this.commentInput}  
+                            onHitEnter={this.onHitEnter} 
+                            commentVisibility={this.state.commentVisibility}  
+                        />
                     </div>
                 </div>
-                <CaseFeedBack switch={this.props.contributionsFeed} />
+                <CaseFeedBack type="comment" switch={this.props.contributionsFeed} />
             </>
         )
     }
