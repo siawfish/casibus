@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import avi from '../../assets/images/avi.jpg'
 
-export default class CommentDisplay extends Component {
+export default class ContributionsDisplay extends Component {
     render() {
         return (
             <div className="commentDisplay">

@@ -9,10 +9,9 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import DisplayPatientHistory from './DisplayPatientHistory'
 import { Link } from 'react-router-dom'
-import { FaRegAddressCard, FaPhotoVideo } from 'react-icons/fa'
 import { contribute, resetContributionFeedback } from '../../store/actions/contributionsAction'
 import CaseFeedBack from './CaseFeedBack'
-import CommentDisplay from './CommentDisplay'
+import Contribution from './Contribution'
 
 
 class Case extends Component {
@@ -110,20 +109,7 @@ class Case extends Component {
                             <button><RiShareForwardBoxLine /></button>
                             <button><FaSignature /></button>
                         </div>
-                        <div className="commentDisplayCon">
-                            <CommentDisplay />
-                        </div>
-                        <div className={this.state.commentVisibility}>
-                            <div className="commentAvatarCon">
-                                <img src={avi} alt="avatar"/>
-                            </div>
-                            <textarea rows="1" onKeyDown={(e)=>this.onHitEnter(e, casefile.cid, author.uid)} onChange={this.commentInput} type="text" placeholder="Enter contribution here..."></textarea>
-                            <span>Hit enter to send contribution</span>
-                            <div className="additionalInfo">
-                                <FaPhotoVideo />
-                                <FaRegAddressCard />
-                            </div>
-                        </div>
+                        <Contribution casefile={casefile} author={author} commentInput={this.commentInput}  onHitEnter={this.onHitEnter} commentVisibility={this.state.commentVisibility}  />
                     </div>
                 </div>
                 <CaseFeedBack switch={this.props.contributionsFeed} />

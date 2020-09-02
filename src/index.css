@@ -1247,8 +1247,15 @@ input:checked + .slider:before {
 }
 
 .commentSection {
-  position: relative;
   margin: 10px 0px;
+}
+
+.commentForm {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
 }
 
 .inputCol .hide {
@@ -1257,7 +1264,7 @@ input:checked + .slider:before {
 
 .inputCol .show {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
