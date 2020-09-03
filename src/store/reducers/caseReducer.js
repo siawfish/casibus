@@ -16,6 +16,10 @@ export default function caseReducer(state = inistate, action){
                 ...state,
                 sendContributionStatus:"show sent"
             }
+        case "Reshared":
+            return state
+        case "Cosigned":
+            return state
         case "CaseErr":
             console.log(action.err);
             return {

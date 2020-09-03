@@ -46,6 +46,106 @@ export const contribute = (contribution) => {
     )
 }
 
+export const reshare = (cid, aid) => {
+    return (
+        (dispatch, getState, {getFirestore})=>{
+            const firestore = getFirestore()
+            firestore
+            .collection("CaseFiles")
+            .doc(cid)
+            .update({
+                reshares:firestore.FieldValue.arrayUnion(aid)
+            })
+            .then(()=>{
+                dispatch({
+                    type:"Reshared"
+                })
+            })
+            .catch(err=>{
+                dispatch({
+                    type:"CaseErr",
+                    err:err.message
+                })
+            })
+        }
+    )
+}
+
+export const unReshare = (cid, aid) => {
+    return (
+        (dispatch, getState, {getFirestore})=>{
+            const firestore = getFirestore()
+            firestore
+            .collection("CaseFiles")
+            .doc(cid)
+            .update({
+                reshares:firestore.FieldValue.arrayRemove(aid)
+            })
+            .then(()=>{
+                dispatch({
+                    type:"Reshared"
+                })
+            })
+            .catch(err=>{
+                dispatch({
+                    type:"CaseErr",
+                    err:err.message
+                })
+            })
+        }
+    )
+}
+
+export const cosign = (cid, aid) => {
+    return (
+        (dispatch, getState, {getFirestore})=>{
+            const firestore = getFirestore()
+            firestore
+            .collection("CaseFiles")
+            .doc(cid)
+            .update({
+                cosigns:firestore.FieldValue.arrayUnion(aid)
+            })
+            .then(()=>{
+                dispatch({
+                    type:"Cosigned"
+                })
+            })
+            .catch(err=>{
+                dispatch({
+                    type:"CaseErr",
+                    err:err.message
+                })
+            })
+        }
+    )
+}
+
+export const unCosign = (cid, aid) => {
+    return (
+        (dispatch, getState, {getFirestore})=>{
+            const firestore = getFirestore()
+            firestore
+            .collection("CaseFiles")
+            .doc(cid)
+            .update({
+                cosigns:firestore.FieldValue.arrayRemove(aid)
+            })
+            .then(()=>{
+                dispatch({
+                    type:"Cosigned"
+                })
+            })
+            .catch(err=>{
+                dispatch({
+                    type:"CaseErr",
+                    err:err.message
+                })
+            })
+        }
+    )
+}
+
 export const resetCaseFeedback = () => {
     return(
         (dispatch)=>{

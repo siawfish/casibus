@@ -501,6 +501,10 @@ label {
   outline: none!important;
 }
 
+.actionBtns .highlight {
+  color: #689626;
+}
+
 .actionBtns button:hover {
   background-color: #cef09e;
   color: #689626;

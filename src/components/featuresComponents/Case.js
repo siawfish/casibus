@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import DisplayPatientHistory from './DisplayPatientHistory'
 import { Link } from 'react-router-dom'
-import { contribute, resetContributionFeedback } from '../../store/actions/caseActions'
+import { contribute, resetContributionFeedback, reshare, unReshare, cosign, unCosign } from '../../store/actions/caseActions'
 import ContributionFeedback from './ContributionFeedback'
 import Contribution from './Contribution'
 
@@ -48,11 +48,21 @@ class Case extends Component {
         e.target.style.height = e.target.scrollHeight + 'px'; 
     }
 
-    // commentCount = (num) => {
-    //     this.setState({
-    //         commentCount:num
-    //     })
-    // }
+    reshare = () => {
+        if(this.props.casefile.reshares.includes(this.props.auth)){
+            this.props.unReshare(this.props.casefile.cid, this.props.auth)
+            return
+        }
+        this.props.reshare(this.props.casefile.cid, this.props.auth)
+    }
+
+    cosign = () => {
+        if(this.props.casefile.cosigns.includes(this.props.auth)){
+            this.props.unCosign(this.props.casefile.cid, this.props.auth)
+            return
+        }
+        this.props.cosign(this.props.casefile.cid, this.props.auth)
+    }
 
     onHitEnter = (e, cid, uid) => {
         if(e.keyCode === 13){
@@ -116,10 +126,10 @@ class Case extends Component {
                                 <button onClick={this.toggleCommentVisibility}><GoComment /></button><small>{casefile.contributions.length}</small>
                             </div>
                             <div className="btnRow">
-                                <button><RiShareForwardBoxLine /></button><small>{casefile.reshares.length}</small>
+                                <button className={casefile.reshares.includes(this.props.auth) ? "highlight" : null} onClick={this.reshare}><RiShareForwardBoxLine /></button><small>{casefile.reshares.length}</small>
                             </div>
                             <div className="btnRow">
-                                <button><FaSignature /></button><small>{casefile.cosigns.length}</small>
+                                <button className={casefile.cosigns.includes(this.props.auth) ? "highlight" : null} onClick={this.cosign}><FaSignature /></button><small>{casefile.cosigns.length}</small>
                             </div>
                         </div>
                         <Contribution 
@@ -148,7 +158,11 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = {
     contribute,
-    resetContributionFeedback
+    resetContributionFeedback,
+    reshare,
+    unReshare,
+    cosign,
+    unCosign
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Case)
