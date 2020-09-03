@@ -82,6 +82,7 @@ class HomeShareCase extends Component {
                         <img src={avi} alt="avatar"/>
                     </div>
                     <div className="inputCol">
+                        
                         <textarea name="msg" onChange={this.onMsgInput} type="text" placeholder="Share here..."/>
                         {
                             this.state.patientHistorySwitch && <PatientHistoryCard onAddHistory={this.addPatientHistory} onRemove={this.togglePatientHistory}/>
