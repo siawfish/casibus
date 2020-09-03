@@ -60,7 +60,7 @@ class ShareCaseModal extends Component {
             creator:this.props.uid,
             createdAt:new Date(),
             contributions:[],
-            share:[],
+            reshares:[],
             cosigns:[]
         }
         this.props.caseFile(caseFile)

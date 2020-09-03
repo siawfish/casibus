@@ -9,8 +9,8 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import DisplayPatientHistory from './DisplayPatientHistory'
 import { Link } from 'react-router-dom'
-import { contribute, resetContributionFeedback } from '../../store/actions/contributionsAction'
-import CaseFeedBack from './CaseFeedBack'
+import { contribute, resetContributionFeedback } from '../../store/actions/caseActions'
+import ContributionFeedback from './ContributionFeedback'
 import Contribution from './Contribution'
 
 
@@ -21,9 +21,6 @@ class Case extends Component {
             commentVisibility:"commentSection hide",
             comment:"",
             hasHistory:false,
-            commentCount:0,
-            repostCount:0,
-            cosignCount:0
         }
     }
 
@@ -51,16 +48,17 @@ class Case extends Component {
         e.target.style.height = e.target.scrollHeight + 'px'; 
     }
 
-    commentCount = (num) => {
-        this.setState({
-            commentCount:num
-        })
-    }
+    // commentCount = (num) => {
+    //     this.setState({
+    //         commentCount:num
+    //     })
+    // }
 
     onHitEnter = (e, cid, uid) => {
         if(e.keyCode === 13){
             e.preventDefault()
             // put the login here
+            
             let contribution = {
                 caseId: cid,
                 creator: uid,
@@ -76,8 +74,8 @@ class Case extends Component {
     render() {
         const { casefile, user } = this.props
         const author = user[0]
-        if(this.props.contributionsFeed.match('show')){
-            if(this.props.contributionsFeed.match('sent')){
+        if(this.props.contributionsFeedback.match('show')){
+            if(this.props.contributionsFeedback.match('sent')){
                 ReactDOM.findDOMNode(this).querySelectorAll('textarea')[0].value=""
                 if(this.state.comment!==""){
                     this.setState({
@@ -89,7 +87,6 @@ class Case extends Component {
                 this.props.resetContributionFeedback()
             }, 3000)
         }
-        // console.log(this.props.auth);
         return (
             <>
                 <div className="casesCon">
@@ -116,13 +113,13 @@ class Case extends Component {
                         }
                         <div className="actionBtns">
                             <div className="btnRow">
-                                <button onClick={this.toggleCommentVisibility}><GoComment /></button><small>{this.state.commentCount}</small>
+                                <button onClick={this.toggleCommentVisibility}><GoComment /></button><small>{casefile.contributions.length}</small>
                             </div>
                             <div className="btnRow">
-                                <button><RiShareForwardBoxLine /></button><small>{this.state.repostCount}</small>
+                                <button><RiShareForwardBoxLine /></button><small>{casefile.reshares.length}</small>
                             </div>
                             <div className="btnRow">
-                                <button><FaSignature /></button><small>{this.state.cosignCount}</small>
+                                <button><FaSignature /></button><small>{casefile.cosigns.length}</small>
                             </div>
                         </div>
                         <Contribution 
@@ -132,11 +129,11 @@ class Case extends Component {
                             commentInput={this.commentInput}  
                             onHitEnter={this.onHitEnter} 
                             commentVisibility={this.state.commentVisibility}
-                            commentCount={this.commentCount}  
+                            contributionsFeedback={this.props.contributionsFeedback}
                         />
                     </div>
                 </div>
-                <CaseFeedBack type="comment" switch={this.props.contributionsFeed} />
+                <ContributionFeedback switch={this.props.contributionsFeedback} />
             </>
         )
     }
@@ -145,7 +142,7 @@ class Case extends Component {
 const mapStateToProps = (state, props) => {
     return {
         user:state.user.users.filter(user=>user.uid === props.casefile.creator),
-        contributionsFeed:state.contributions.contributionFeed
+        contributionsFeedback:state.cases.sendContributionStatus
     }
 }
 

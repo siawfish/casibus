@@ -21,11 +21,46 @@ export const caseFile = (caseFile) => {
     )
 }
 
+export const contribute = (contribution) => {
+    return (
+        (dispatch, getState, {getFirestore})=>{
+            const firestore = getFirestore()
+            firestore
+            .collection("CaseFiles")
+            .doc(contribution.caseId)
+            .update({
+                contributions:firestore.FieldValue.arrayUnion(contribution)
+            })
+            .then(()=>{
+                dispatch({
+                    type:"ContributionSent"
+                })
+            })
+            .catch(err=>{
+                dispatch({
+                    type:"CaseErr",
+                    err:err.message
+                })
+            })
+        }
+    )
+}
+
 export const resetCaseFeedback = () => {
     return(
         (dispatch)=>{
             dispatch({
                 type:"ResetCaseFeedback"
+            })
+        }
+    )
+}
+
+export const resetContributionFeedback = () => {
+    return(
+        (dispatch)=>{
+            dispatch({
+                type:"ResetContributionFeedback"
             })
         }
     )

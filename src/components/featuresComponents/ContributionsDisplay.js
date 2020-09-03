@@ -11,7 +11,7 @@ class ContributionsDisplay extends Component {
                     <img src={avi} alt="avatar"/>
                 </div>
                 <div className="commentBubble">
-                    <strong>{this.props.author && this.props.author[0].name}</strong> {this.props.contribution.caption}
+                    <strong>{this.props.author[0] && this.props.author[0].name}</strong> {this.props.contribution.caption}
                     <small>
                         {moment(this.props.contribution.createdAt.toDate()).fromNow()}
                     </small>
@@ -27,8 +27,4 @@ const mapStateToProps = (state, props) => {
     }
 }
 
-const mapDispatchToProps = {
-    
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContributionsDisplay)
+export default connect(mapStateToProps)(ContributionsDisplay)
