@@ -58,7 +58,10 @@ class ShareCaseModal extends Component {
             history:this.state.patientHistory,
             hasHistory:this.state.patientHistorySwitch,
             creator:this.props.uid,
-            createdAt:new Date()
+            createdAt:new Date(),
+            contributions:[],
+            share:[],
+            cosigns:[]
         }
         this.props.caseFile(caseFile)
     }

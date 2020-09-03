@@ -11,7 +11,10 @@ class FollowSuggestions extends Component {
         const { users, uid } = this.props
         const tempSuggestions = users.filter(user=>uid!==user.uid)
         const user = users.filter(user=>uid===user.uid)
-        const suggestions = tempSuggestions.filter(sug=>!user[0].following.includes(sug.uid))
+        let suggestions = []
+        if(user.length===1){
+            suggestions = tempSuggestions.filter(sug=>!user[0].following.includes(sug.uid))
+        }
         return (
             <div style={{marginTop:20}} className="rightCardsCon">
                 <div className="header">
