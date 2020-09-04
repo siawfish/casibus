@@ -4,9 +4,9 @@ import { getUser } from '../../store/actions/userActions'
 import { connect } from 'react-redux'
 
 class Header extends Component {
-    componentDidMount(){
-        this.props.uid && this.props.getUser(this.props.uid)
-    }
+    // componentDidMount(){
+    //     this.props.uid && this.props.getUser(this.props.uid)
+    // }
     render() {
         const { loc, user, cases } = this.props
         return (
@@ -17,7 +17,7 @@ class Header extends Component {
                             <IoMdArrowRoundBack />
                         </div>
                         <div>
-                            { user.name && <h6>Dr. {user.name}</h6> }
+                            { user[0] && <h6>Dr. {user[0].name}</h6> }
                             <small>{ cases.length } cases</small>
                         </div>
                     </div> :
@@ -30,7 +30,7 @@ class Header extends Component {
 
 const mapStateToProps = (state, props) => {
     return {
-        user:state.user.user,
+        user:state.user.users.filter(user=>user.uid===props.uid),
         cases:state.cases.cases.filter(obj=>obj.creator===props.uid)
     }
 }

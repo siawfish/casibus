@@ -488,6 +488,38 @@ label {
   font-size: 18px;
 }
 
+.btnSmall {
+  background-color: transparent;
+  border: 1px solid #689626;
+  color: #689626;
+  border-radius: 15px;
+  outline: none!important;
+}
+
+.btnSmall:hover {
+  color: #8ec63f;
+  border: 1px solid #8ec63f;
+}
+
+.zeroCases svg {
+  font-size: 70px;
+  margin-bottom: 30px;
+  color: #689626;
+}
+
+.zeroCases strong{
+  padding-bottom: 20px;
+}
+
+.zeroCases {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 80px;
+  text-align: center;
+}
+
 .actionBtns button {
   cursor: pointer;
   color: #999999;

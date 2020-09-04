@@ -6,6 +6,7 @@ import Bio from '../components/featuresComponents/Bio'
 import { connect } from 'react-redux'
 import { getUser } from '../store/actions/userActions'
 import { getCases } from '../store/actions/caseActions'
+import ZeroCases from '../components/featuresComponents/ZeroCases'
 
 class Profile extends Component {
     componentDidMount(){
@@ -13,6 +14,7 @@ class Profile extends Component {
         this.props.getUser(id)
         this.props.getCases()
     }
+    
     render() {
         return (
            <>
@@ -28,6 +30,7 @@ class Profile extends Component {
                         </div>
                         <div className="tabsContent">
                             {
+                                this.props.cases.length < 1 ? <ZeroCases /> :
                                 this.props.cases.map(obj=><Case auth={this.props.auth} casefile={obj} />)
                             }
                         </div>

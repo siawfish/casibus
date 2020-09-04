@@ -11,7 +11,6 @@ export default class Midpane extends Component {
                     <Route path="/home" component={Interests} />
                     <Route path="/profile/:uid" component={Profile} />
                 </BrowserRouter>
-
             </div>
         )
     }

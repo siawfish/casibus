@@ -90,7 +90,7 @@ class ShareCaseModal extends Component {
         }
         return (
             <>
-                <button onClick={this.show} className="btnFill">Post</button>
+                { this.props.size ==="sm" ? <button onClick={this.show} className="btnSmall">Share first case</button> : <button onClick={this.show} className="btnFill">Post</button>}
                 <Modal className="shareCaseModal" show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header>
                         <button onClick={this.handleClose}><IoMdClose /></button>
