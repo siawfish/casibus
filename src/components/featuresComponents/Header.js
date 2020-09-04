@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import { getUser } from '../../store/actions/userActions'
 import { connect } from 'react-redux'
+import Search from './Search'
 
 class Header extends Component {
     // componentDidMount(){
@@ -21,7 +22,15 @@ class Header extends Component {
                             <small>{ cases.length } cases</small>
                         </div>
                     </div> :
-                    <h4>Home</h4>
+                    null
+                }
+                {
+                    loc.pathname==="/cases" ? 
+                    <div className="casesHeader"><h4>Explore Cases</h4> <Search /></div> : null
+                }
+                {
+                    loc.pathname==="/home" || loc.pathname==="/" ?
+                    <h4>Home</h4> : null
                 }
             </div>
         )

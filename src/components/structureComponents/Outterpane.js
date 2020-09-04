@@ -7,10 +7,10 @@ export default class Outterpane extends Component {
     render() {
         return (
             <div className="right">
-                <Search />
-
+                {
+                    this.props.loc.pathname !=="/cases" ? <Search /> : null
+                }
                 <Trends />
-
                 <FollowSuggestions uid={this.props.uid} />
             </div>
         )

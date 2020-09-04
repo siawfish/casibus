@@ -562,6 +562,17 @@ label {
   padding-top: 5px;
 }
 
+.casesHeader {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  align-items: center;
+}
+
+.casesHeader h4 {
+  width: 50%;
+}
+
 .home .right {
   width: 400px;
   padding: 0 30px;
@@ -572,6 +583,7 @@ label {
   background-color: #ffffff;
   top: 0;
   padding: 10px 0;
+  width: 100%;
 }
 
 .searchCon input{

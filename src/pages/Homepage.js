@@ -17,7 +17,7 @@ class Home extends Component {
                 
                 <Midpane props={this.props} />
                 
-                <Outterpane uid={this.props.auth} />
+                <Outterpane loc={this.props.location} uid={this.props.auth} />
             </div>
         )
     }

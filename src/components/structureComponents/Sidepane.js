@@ -15,7 +15,7 @@ export default class Sidepane extends Component {
                     </div>
                     <ul>
                         <li><Link to="/"><span><FaHospital /></span>Interests</Link></li>
-                        <li><Link to="#"><span><FaSlackHash /></span>Cases</Link></li>
+                        <li><Link to="/cases"><span><FaSlackHash /></span>Cases</Link></li>
                         <li><Link to="#"><span><FaBell /></span>Notifications</Link></li>
                         <li><Link to="#"><span><FaPager /></span>Pagers</Link></li>
                         <li><Link to={'/profile/'+this.props.uid}><span><FaUser /></span>Profile</Link></li>
