@@ -18,6 +18,14 @@ class Interests extends Component {
         if(user.uid){
             const followingFilteredCases = cases.filter(casefile=>user.following.includes(casefile.creator))
             const selfFilteredCases = cases.filter(casefile=>casefile.creator===user.uid)
+            // const cosignedFilteredCases = cases.filter(casefile=>{
+            //     return user.following.forEach((following, i)=>{
+            //         cases.cosigns.includes(following)
+            //     })
+            // })
+            // const resharededFilteredCases = cases.filter(casefile=>{
+            //     return user.following.forEach(following=>casefile.reshares.includes(following))
+            // })
             casefiles = [...followingFilteredCases, ...selfFilteredCases]
         }
         const sortedCasefiles = casefiles.sort((a,b)=>b.createdAt - a.createdAt)

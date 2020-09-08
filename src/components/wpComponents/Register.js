@@ -18,7 +18,8 @@ class Register extends Component {
             email:"",
             year:"",
             title:"",
-            pass:""
+            pass:"",
+            institution:""
         }
     }
 
@@ -56,6 +57,7 @@ class Register extends Component {
             name:this.state.name,
             email:this.state.email,
             pass:this.state.pass,
+            institution:this.state.institution,
             title:this.state.title,
             dob:this.state.day+" "+this.state.month+", "+this.state.year,
             followers:[],
@@ -81,10 +83,15 @@ class Register extends Component {
                         <div className="inputCon">
                             <label>Email</label>
                             <input name="email" onChange={this.myChangeHandler} type="email" />
+                            <small style={{color:"#999"}}>Enter work email.</small>
                         </div>
                         <div className="inputCon">
                             <label>Password</label>
                             <input name="pass" onChange={this.myChangeHandler} type="password" />
+                        </div>
+                        <div className="inputCon">
+                            <label>Institution</label>
+                            <input name="institution" onChange={this.myChangeHandler} type="text" />
                         </div>
                         <div className="inputCon">
                             <label>Job Title</label>

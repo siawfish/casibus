@@ -30,7 +30,7 @@ export default class Welcome extends Component {
                     <div className="logoCon">
                         <img src={logo} alt="logo"/>
                     </div>
-                    <h1>See what health professionals are talking about</h1>
+                    <h1>Discover and share critical information with other health professionals in real time</h1>
                     <h5>Join Casibus today.</h5>
                     <button onClick={this.register} className="btnFill">Sign up</button>
                     <Link to="/login"><button className="btnBorder">Sign in</button></Link>

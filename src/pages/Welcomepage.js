@@ -19,9 +19,9 @@ class Welcomepage extends Component {
             <div className="homepage">
                 <div className="left">
                     <div className="listCon">
-                        <span><RiSearch2Line /> Follow topics of interest.</span>
-                        <span><FiUsers /> Hear what health professionals are talking about.</span>
-                        <span><RiChat1Line /> Join the conversation.</span>
+                        <span><RiSearch2Line /> Discover critical information.</span>
+                        <span><FiUsers /> Share key insights with other health professionals.</span>
+                        <span><RiChat1Line /> Join conversations in the health community.</span>
                     </div>
                 </div>
                 <div className="right">

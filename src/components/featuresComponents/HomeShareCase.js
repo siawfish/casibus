@@ -17,6 +17,7 @@ class HomeShareCase extends Component {
             patientHistorySwitch:false,
             patientHistory: [],
         }
+        this.reader = React.createRef()
     }
     
     togglePatientHistory = () => {
@@ -47,6 +48,10 @@ class HomeShareCase extends Component {
     autoResize = (e) => { 
         e.target.style.height = 'auto'; 
         e.target.style.height = e.target.scrollHeight + 'px'; 
+    }
+
+    toggleFileReader = () => {
+        this.reader.current.click()
     }
 
     onShare = (e) => {
@@ -92,7 +97,8 @@ class HomeShareCase extends Component {
                         }
                         <div className="postBtnsCon">
                             <div className="leftBtns">
-                                <button><FaPhotoVideo /></button>
+                                <input ref={this.reader} type="file" multiple hidden />
+                                <button onClick={this.toggleFileReader}><FaPhotoVideo /></button>
                                 <button onClick={this.togglePatientHistory}><FaRegAddressCard /></button>
                             </div>
                             <div className="shareBtnCon">

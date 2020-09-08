@@ -31,7 +31,7 @@ class Bio extends Component {
                     { user.bio && <p className="desc">{user.bio}</p>}
                     <p>
                         { user.loc && <small><MdAddLocation /> {user.loc}</small> }
-                        { user.ins && <small><FaHospitalSymbol /> {user.ins}</small> }
+                        { user.institution && <small><FaHospitalSymbol /> {user.institution}</small> }
                         { user.dob && <small><FaBirthdayCake /> {user.dob}</small> }
                         { user.createdAt && <small><BsFillCalendarFill /> {moment((user.createdAt).toDate()).calendar()}</small> }
                     </p>
