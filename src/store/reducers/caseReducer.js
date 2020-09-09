@@ -1,7 +1,8 @@
 let inistate = {
     sendCaseFileStatus:"",
     sendContributionStatus:"",
-    cases:[]
+    cases:[],
+    media:[]
 }
 
 export default function caseReducer(state = inistate, action){
@@ -15,6 +16,11 @@ export default function caseReducer(state = inistate, action){
             return {
                 ...state,
                 sendContributionStatus:"show sent"
+            }
+        case "MediaSuccess":
+            return {
+                ...state,
+                media:action.media
             }
         case "Reshared":
             return state

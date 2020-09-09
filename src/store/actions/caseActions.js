@@ -34,29 +34,6 @@ export const caseFile = (caseFile, media) => {
     )
 }
 
-// export const uploadCasesMedia = (cid, media) => {
-//     return(
-//         (dispatch, getState)=> {
-//             media.forEach((media, i)=>{
-//                 console.log(cid);
-//                 firebase
-//                 .storage()
-//                 .ref("casefileMedia/"+cid+"/"+media.name)
-//                 .put(media)
-//                 .then(()=>{
-//                     console.log("here");
-//                     dispatch({
-//                         type:"CaseSent"
-//                     })
-//                 })
-//                 .catch(err=>{
-//                     console.log(err.message);
-//                 })
-//             })
-//         }
-//     )
-// }
-
 export const contribute = (contribution) => {
     return (
         (dispatch, getState, {getFirestore})=>{

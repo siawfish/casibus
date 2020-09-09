@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-// import caseImg from '../../assets/images/caseImg.jpg'
 import {  FaSignature } from 'react-icons/fa'
 import { GoComment } from 'react-icons/go'
 import { RiShareForwardBoxLine } from 'react-icons/ri'
@@ -12,6 +11,7 @@ import { Link } from 'react-router-dom'
 import { contribute, resetContributionFeedback, reshare, unReshare, cosign, unCosign } from '../../store/actions/caseActions'
 import ContributionFeedback from './ContributionFeedback'
 import Contribution from './Contribution'
+import firebase from '../../config/fbConfig'
 
 
 class Case extends Component {
@@ -84,6 +84,8 @@ class Case extends Component {
     render() {
         const { casefile, user } = this.props
         const author = user[0]
+        const storage = firebase.storage()
+        const mediaFiles = []
         if(this.props.contributionsFeedback.match('show')){
             if(this.props.contributionsFeedback.match('sent')){
                 ReactDOM.findDOMNode(this).querySelectorAll('textarea')[0].value=""
@@ -96,6 +98,18 @@ class Case extends Component {
             setTimeout(() => {
                 this.props.resetContributionFeedback()
             }, 3000)
+        }
+        if(casefile.media && casefile.media.length>=1){
+            casefile.media.forEach(media=>
+                storage.ref("casefileMedia/"+casefile.cid+"/"+media)
+                .getDownloadURL()
+                .then(url=>{
+                    mediaFiles.push(url)
+                })
+                .catch(err=>{
+                    console.log(err.message);
+                })
+            )
         }
         return (
             <>
@@ -112,12 +126,16 @@ class Case extends Component {
                         <p>
                             {casefile.caption}
                         </p>
-                        {/* <div className="mediaCon">
-                            <img src={caseImg} alt="caseMedia"/>
-                            <img src={caseImg} alt="caseMedia"/>
-                            <img src={caseImg} alt="caseMedia"/>
-                            <img src={caseImg} alt="caseMedia"/>
-                        </div> */}
+                        {
+                            mediaFiles.length>=1 &&
+                            <div className="caseMedia">
+                                {
+                                    mediaFiles.map(mediaFile=>
+                                        <img src={mediaFile} alt="" />
+                                    ) 
+                                }
+                            </div> 
+                        }
                         {
                              casefile.hasHistory ? <DisplayPatientHistory history={casefile.history} /> : null
                         }
@@ -152,7 +170,8 @@ class Case extends Component {
 const mapStateToProps = (state, props) => {
     return {
         user:state.user.users.filter(user=>user.uid === props.casefile.creator),
-        contributionsFeedback:state.cases.sendContributionStatus
+        contributionsFeedback:state.cases.sendContributionStatus,
+        media:state.cases.media
     }
 }
 

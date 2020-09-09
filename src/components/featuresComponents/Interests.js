@@ -13,20 +13,16 @@ class Interests extends Component {
         this.props.uid && this.props.getUser(this.props.uid)
     }
     render() {
-        const { cases, match, location, uid, user } = this.props
+        const { cases, match, location, uid, user, allusers } = this.props
         let casefiles = []
+        const institutionUsers  = allusers.filter(insUser=>insUser.institution === user.institution)
+        const institutionUsersUids = []
+        institutionUsers.forEach(user=> institutionUsersUids.push(user.uid))
         if(user.uid){
             const followingFilteredCases = cases.filter(casefile=>user.following.includes(casefile.creator))
             const selfFilteredCases = cases.filter(casefile=>casefile.creator===user.uid)
-            // const cosignedFilteredCases = cases.filter(casefile=>{
-            //     return user.following.forEach((following, i)=>{
-            //         cases.cosigns.includes(following)
-            //     })
-            // })
-            // const resharededFilteredCases = cases.filter(casefile=>{
-            //     return user.following.forEach(following=>casefile.reshares.includes(following))
-            // })
-            casefiles = [...followingFilteredCases, ...selfFilteredCases]
+            const institutionCases = cases.filter(casefile=>institutionUsersUids.includes(casefile.creator))
+            casefiles = [...followingFilteredCases, ...selfFilteredCases, ...institutionCases]
         }
         const sortedCasefiles = casefiles.sort((a,b)=>b.createdAt - a.createdAt)
         return (
@@ -46,7 +42,8 @@ const mapStateToProps = (state) => {
     return{
         cases:state.cases.cases,
         uid:state.firebase.auth.uid,
-        user:state.user.user
+        user:state.user.user,
+        allusers:state.user.users
     }
 }
 
