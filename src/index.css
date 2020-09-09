@@ -573,6 +573,23 @@ label {
   width: 50%;
 }
 
+.caseMedia {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid #8ec63f;
+  border-radius: 5px;
+  flex-wrap: wrap;
+  margin:10px 0
+}
+
+.caseMedia img {
+  width: 80px;
+  height: 80px;
+}
+
 .home .right {
   width: 400px;
   padding: 0 30px;

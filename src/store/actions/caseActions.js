@@ -1,12 +1,25 @@
-export const caseFile = (caseFile) => {
+import firebase from '../../config/fbConfig'
+
+export const caseFile = (caseFile, media) => {
     return (
         (dispatch, getState, {getFirestore})=>{
             const firestore = getFirestore()
-            firestore
-            .collection("CaseFiles")
-            .doc()
-            .set(caseFile)
+            const doc = firestore.collection("CaseFiles").doc()
+            doc.set(caseFile)
             .then(()=>{
+                if(caseFile.hasMedia){
+                    media.forEach((media, i)=>{
+                        firebase
+                        .storage()
+                        .ref("casefileMedia/"+doc.id+"/"+media.name)
+                        .put(media)
+                        if(i===media.length-1){
+                            dispatch({
+                                type:"CaseSent"
+                            })
+                        }
+                    })
+                }
                 dispatch({
                     type:"CaseSent"
                 })
@@ -20,6 +33,29 @@ export const caseFile = (caseFile) => {
         }
     )
 }
+
+// export const uploadCasesMedia = (cid, media) => {
+//     return(
+//         (dispatch, getState)=> {
+//             media.forEach((media, i)=>{
+//                 console.log(cid);
+//                 firebase
+//                 .storage()
+//                 .ref("casefileMedia/"+cid+"/"+media.name)
+//                 .put(media)
+//                 .then(()=>{
+//                     console.log("here");
+//                     dispatch({
+//                         type:"CaseSent"
+//                     })
+//                 })
+//                 .catch(err=>{
+//                     console.log(err.message);
+//                 })
+//             })
+//         }
+//     )
+// }
 
 export const contribute = (contribution) => {
     return (

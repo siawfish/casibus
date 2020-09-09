@@ -16,8 +16,22 @@ class HomeShareCase extends Component {
             msg:'',
             patientHistorySwitch:false,
             patientHistory: [],
+            media:[]
         }
         this.reader = React.createRef()
+    }
+
+    uploadMultipleFiles = (e) => {
+        const fileObj = e.target.files
+        let filesArray = []
+        for (let i = 0; i < fileObj.length; i++) {
+            if(fileObj[i].type.match("image/") || fileObj[i].type.match("video/")){
+                filesArray.push(fileObj[i])
+            }
+        }
+        this.setState({
+            media:filesArray
+        })
     }
     
     togglePatientHistory = () => {
@@ -56,6 +70,8 @@ class HomeShareCase extends Component {
 
     onShare = (e) => {
         e.preventDefault()
+        const mediaNames = []
+        this.state.media.forEach(media=> mediaNames.push(media.name))
         let caseFile = {
             caption:this.state.msg,
             history:this.state.patientHistory,
@@ -64,9 +80,11 @@ class HomeShareCase extends Component {
             createdAt:new Date(),
             contributions:[],
             reshares:[],
-            cosigns:[]
+            cosigns:[],
+            hasMedia:this.state.media.length>=1 ? true : false,
+            media:mediaNames
         }
-        this.props.caseFile(caseFile)
+        this.props.caseFile(caseFile, this.state.media)
     }
 
     render() {
@@ -76,6 +94,11 @@ class HomeShareCase extends Component {
                 if(this.state.patientHistorySwitch){
                     this.setState({
                         patientHistorySwitch:false
+                    })
+                }
+                if(this.state.media.length>=1){
+                    this.setState({
+                        media:[]
                     })
                 }
             }
@@ -95,9 +118,16 @@ class HomeShareCase extends Component {
                         {
                             this.state.patientHistorySwitch && <PatientHistoryCard onAddHistory={this.addPatientHistory} onRemove={this.togglePatientHistory}/>
                         }
+                        {
+                            this.state.media.length >= 1 ? <div className="caseMedia">
+                                {
+                                    this.state.media.map(media=><img src={URL.createObjectURL(media)} alt=""/>)
+                                }
+                            </div> : null
+                        }
                         <div className="postBtnsCon">
                             <div className="leftBtns">
-                                <input ref={this.reader} type="file" multiple hidden />
+                                <input onChange={this.uploadMultipleFiles} ref={this.reader} type="file" multiple hidden />
                                 <button onClick={this.toggleFileReader}><FaPhotoVideo /></button>
                                 <button onClick={this.togglePatientHistory}><FaRegAddressCard /></button>
                             </div>
