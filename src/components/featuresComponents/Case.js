@@ -12,7 +12,8 @@ import { contribute, resetContributionFeedback, reshare, unReshare, cosign, unCo
 import ContributionFeedback from './ContributionFeedback'
 import Contribution from './Contribution'
 import firebase from '../../config/fbConfig'
-import ImgsViewer from 'react-images'
+import Lightbox from "react-awesome-lightbox";
+import "react-awesome-lightbox/build/style.css";
 
 
 class Case extends Component {
@@ -22,7 +23,8 @@ class Case extends Component {
             commentVisibility:"commentSection hide",
             comment:"",
             hasHistory:false,
-            mediaFiles:[]
+            mediaFiles:[],
+            showViewer:false
         }
     }
 
@@ -35,9 +37,7 @@ class Case extends Component {
                 .getDownloadURL()
                 .then(url=>{
                     this.setState({
-                        mediaFiles:[...this.state.mediaFiles, {
-                            src:url
-                        }]
+                        mediaFiles:[url]
                     })
                 })
                 .catch(err=>{
@@ -104,6 +104,18 @@ class Case extends Component {
          }
     }
 
+    openViewer = () => {
+        this.setState({
+            showViewer:true
+        })
+    }
+
+    closeViewer = () => {
+        this.setState({
+            showViewer:false
+        })
+    }
+
     render() {
         const { casefile, user } = this.props
         const author = user[0]
@@ -139,9 +151,9 @@ class Case extends Component {
                             this.state.mediaFiles.length>=1 &&
                             <div className="caseMedia">
                                 {
-                                    <ImgsViewer
-                                        imgs={this.state.mediaFiles}
-                                    />
+                                    this.state.mediaFiles.map(mediaFile=>
+                                        <>{this.state.showViewer ? <Lightbox onClose={this.closeViewer} image={mediaFile} title=""/> : <img width={80} height={80} onClick={this.openViewer} src={mediaFile} alt="" />}</>
+                                    ) 
                                 }
                             </div> 
                         }

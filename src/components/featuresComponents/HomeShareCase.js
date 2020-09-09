@@ -121,7 +121,7 @@ class HomeShareCase extends Component {
                         {
                             this.state.media.length >= 1 ? <div className="caseMedia">
                                 {
-                                    this.state.media.map(media=><img src={URL.createObjectURL(media)} alt=""/>)
+                                    this.state.media.map(media=><img width={80} height={80} src={URL.createObjectURL(media)} alt=""/>)
                                 }
                             </div> : null
                         }
