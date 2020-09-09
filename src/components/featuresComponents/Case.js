@@ -12,6 +12,7 @@ import { contribute, resetContributionFeedback, reshare, unReshare, cosign, unCo
 import ContributionFeedback from './ContributionFeedback'
 import Contribution from './Contribution'
 import firebase from '../../config/fbConfig'
+import ImgsViewer from 'react-images'
 
 
 class Case extends Component {
@@ -34,7 +35,9 @@ class Case extends Component {
                 .getDownloadURL()
                 .then(url=>{
                     this.setState({
-                        mediaFiles:[url]
+                        mediaFiles:[...this.state.mediaFiles, {
+                            src:url
+                        }]
                     })
                 })
                 .catch(err=>{
@@ -136,9 +139,9 @@ class Case extends Component {
                             this.state.mediaFiles.length>=1 &&
                             <div className="caseMedia">
                                 {
-                                    this.state.mediaFiles.map(mediaFile=>
-                                        <img src={mediaFile} alt="" />
-                                    ) 
+                                    <ImgsViewer
+                                        imgs={this.state.mediaFiles}
+                                    />
                                 }
                             </div> 
                         }
