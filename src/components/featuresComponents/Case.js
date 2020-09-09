@@ -21,6 +21,26 @@ class Case extends Component {
             commentVisibility:"commentSection hide",
             comment:"",
             hasHistory:false,
+            mediaFiles:[]
+        }
+    }
+
+    componentDidMount(){
+        const storage = firebase.storage()
+        const { casefile } = this.props
+        if(casefile.media && casefile.media.length>=1){
+            casefile.media.forEach(media=>
+                storage.ref("casefileMedia/"+casefile.cid+"/"+media)
+                .getDownloadURL()
+                .then(url=>{
+                    this.setState({
+                        mediaFiles:[url]
+                    })
+                })
+                .catch(err=>{
+                    console.log(err.message);
+                })
+            )
         }
     }
 
@@ -84,8 +104,6 @@ class Case extends Component {
     render() {
         const { casefile, user } = this.props
         const author = user[0]
-        const storage = firebase.storage()
-        const mediaFiles = []
         if(this.props.contributionsFeedback.match('show')){
             if(this.props.contributionsFeedback.match('sent')){
                 ReactDOM.findDOMNode(this).querySelectorAll('textarea')[0].value=""
@@ -98,18 +116,6 @@ class Case extends Component {
             setTimeout(() => {
                 this.props.resetContributionFeedback()
             }, 3000)
-        }
-        if(casefile.media && casefile.media.length>=1){
-            casefile.media.forEach(media=>
-                storage.ref("casefileMedia/"+casefile.cid+"/"+media)
-                .getDownloadURL()
-                .then(url=>{
-                    mediaFiles.push(url)
-                })
-                .catch(err=>{
-                    console.log(err.message);
-                })
-            )
         }
         return (
             <>
@@ -127,10 +133,10 @@ class Case extends Component {
                             {casefile.caption}
                         </p>
                         {
-                            mediaFiles.length>=1 &&
+                            this.state.mediaFiles.length>=1 &&
                             <div className="caseMedia">
                                 {
-                                    mediaFiles.map(mediaFile=>
+                                    this.state.mediaFiles.map(mediaFile=>
                                         <img src={mediaFile} alt="" />
                                     ) 
                                 }
