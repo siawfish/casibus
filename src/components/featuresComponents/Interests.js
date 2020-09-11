@@ -22,9 +22,13 @@ class Interests extends Component {
             const followingFilteredCases = cases.filter(casefile=>user.following.includes(casefile.creator))
             const selfFilteredCases = cases.filter(casefile=>casefile.creator===user.uid)
             const institutionCases = cases.filter(casefile=>institutionUsersUids.includes(casefile.creator))
+            console.log("following cases", followingFilteredCases);
+            console.log("self cases", selfFilteredCases);
+            console.log("institution cases", institutionCases);
             casefiles = [...followingFilteredCases, ...selfFilteredCases, ...institutionCases]
         }
-        const sortedCasefiles = casefiles.sort((a,b)=>b.createdAt - a.createdAt)
+        const sortedCasefilesSorted = casefiles.sort((a,b)=>b.createdAt - a.createdAt)
+        const sortedCasefiles = Array.from(new Set(sortedCasefilesSorted))
         return (
             <>
                 <Header uid={match.params.uid} loc={location} />
